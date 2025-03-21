@@ -1,0 +1,113 @@
+First update 18:00
+// Intro and when I have press (OK) the program will start running
+    var intro = alert("Hello and welcome to this game, press " + "(OK)" + " to get instruction");
+    //This is the instruction and role
+    var discription = document.write("This game is a memory game there you gonna see ahow good memory you have! For every round you wins it gonna be harder up to levle 14 who is the last levle! If you press wrong button you need to start all over again! Press " + "(Rules)" + " to see the rules");
+
+Secound update  18:15
+// Intro and when I have press (OK) the program will start running
+    var intro = alert("Hello and welcome to this game, press " + "(OK)" + " to get instruction");
+    //This is the instruction and role
+    var discription = document.write("This game is a memory game there you gonna see how good memory you have! For every round you wins it gonna be harder up to levle 14 who is the last levle! If you press wrong button you need to start all over again!" + "<br>" + "<br>" + " Press (RULES) to see the rules." + "<br> " );
+    // After clicking Rules
+    var rules = document.write("<br> " + "RULES:" + "<br> " + "1. You have 10 secound each round to memorize the color." + "<br>" +
+    " 2. After every 5 round the possison of colors you choose between mixed and you can not change this." + "<br> " +
+        "3. After every 6 rounds you have the oppertunity to add a color to the color you choose between, it is up to you" + "<br> " +
+        "4. If you tap in the wrong order you lost!" + "<br> " + "<br> " + "Press (START) to start the game");
+    // The start buttom do that the game start running
+
+18:35
+<p> "This game is a memory game there you gonna see how good memory you have! For every round you wins it gonna be harder up to levle 14 who is the last levle! If you press wrong button you need to start all over again! <br>  <br>  Press (RULES) to see the rules. <br></p>
+<button onclick="myFunction()">RULES</button>
+<script>
+    // Intro and when I have press (OK) the program will start running
+    var intro = alert("Hello and welcome to this game, press " + "(OK)" + " to get instruction");
+    //Click on the button rules
+
+    function myFunction() {
+        var button = document.createElement("BUTTON");
+// The rules addad
+        var rules = document.write("RULES:" + "<br> " + "1. You have 10 secound each round to memorize the color." + "<br>" +
+            " 2. After every 5 round the possison of colors you choose between mixed and you can not change this." + "<br> " +
+            "3. After every 6 rounds you have the oppertunity to add a color to the color you choose between, it is up to you" + "<br> " +
+            "4. If you tap in the wrong order you lost!" + "<br> " + "<br> " + "Press (START) to start the game");
+    }
+ 
+    // The start buttom do that the game start running
+
+
+19:05
+<p> This game is a memory game there you gonna see how good memory you have! For every round you win it gonna be harder and harder up to levle 14 who is the last levle! If you press wrong button you need to start all over again! <br>  <br>  Press (RULES) to see the rules. <br></p>
+<button onclick="myFunction()">RULES</button>
+<script>
+    // Intro and when I have press (OK) the program will start running
+    var intro = prompt("Hello and welcome to this game! Type in your name and then press
+    " + "(OK)" + " to get the instruction");
+    //Click on the button rules
+
+    function myFunction() {
+        var x = document.createElement("BUTTON");
+        //The rules added
+        var rules = document.write(intro + "! It is time to review the rules! " + "<br>" + "<br>" + "RULES:" + "<br> " + "1. You have 10 secound each round to memorize the color." + "<br>" +
+            " 2. After every 5 round the possison of colors you choose between mixed and you can not change this." + "<br> " +
+            "3. After every 6 rounds you have the oppertunity to add a color to the color you choose between, it is up to you" + "<br> " +
+            "4. If you tap in the wrong order you lost!" + "<br> " + "<br> " + "Press (START) to start the game");
+    }
+    // The start buttom do that the game start running
+
+
+19:25
+Comment:Trying to add more then one button after the first page, so that the secound button should take me to the game
+<p> This game is a memory game there you gonna see how good memory you have! For every round you win it gonna be harder and harder up to levle 14 who is the last levle! If you press wrong button you need to start all over again! <br>  <br>  Press (RULES) to see the rules. <br></p>
+<button onclick="myFunction()">RULES</button>
+<script>
+    // Intro and when I have press (OK) the program will start running
+    var intro = prompt("Hello and welcome to this game! Type in your name and then press " + "(OK)" + " to get the instruction");
+    //Click on the button rules
+
+    function myFunction() {
+        var one = document.createElement("RULES");
+        var two = document.createTextNode("START");
+        two.appendChild(one);
+        document.body.appendChild(two);
+    }
+        {
+        //The rules added
+        var rules = document.write(intro + "! It is time to review the rules! " + "<br>" + "<br>" + "RULES:" + "<br> " + "1. You have 10 secound each round to memorize the color." + "<br>" +
+            " 2. After every 5 round the possison of colors you choose between mixed and you can not change this." + "<br> " +
+            "3. After every 6 rounds you have the oppertunity to add a color to the color you choose between, it is up to you if you want that" + "<br> " +
+            "4. If you tap in the wrong order you lose!" + "<br> " + "<br> " + "Press (START) to start the game");
+    }
+
+    // The start buttom do that the game start running
+
+
+20:00 I have tried to do a new button on the secound screen but did not understand
+
+<p> This game is a memory game there you gonna see how good memory you have!
+For every round you win it gonna be harder and harder up to levle 14 who is the last levle!
+If you press wrong button you need to start all over again! <br>  <br>  Press the (RULES) down below to see the rules. <br></p>
+<button onclick="myFunction()">RULES</button>
+
+<script>
+    // Intro and when I have press (OK) the program will start running
+    var intro = prompt("Hello and welcome to this game! Type in your name and then press " + "(OK)" + " to get the instruction");
+    //Click on the button rules
+
+    function myFunction() {
+        var one = document.createElement("BUTTON");
+        //The rules added
+
+        var rules = document.write("Hi " + intro + "! It is time to review the rules! " + "<br>" + "<br>" + "RULES:" + "<br> " + "1. You have 15 secound each round to memorize the color." + "<br>" +
+            " 2. After every 5 round the possison of colors you choose between mixed and you can not change this." + "<br> " +
+            "3. After every 6th round you have the opportunity to add a color to choose from, it is up to you if you want that" + "<br> " +
+            "4. If you tap in the wrong order you lose!" + "<br>" + "Good luck " + intro + "!" + "<br> " + "<br> " + "Press (START) down below to start the game");
+    }
+
+
+    // The start buttom do that the game start running
+
+
+
+
+</script>
