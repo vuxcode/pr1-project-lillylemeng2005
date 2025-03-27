@@ -67,6 +67,7 @@
             ;
             gamereaddivtext.appendChild(spacedivivtext);
             document.body.appendChild(spacedivdiv)
+
         }
 
         //To get the text downbelow show and hide buttons
@@ -90,7 +91,7 @@
                 document.getElementById("textarea1").appendChild(myCanvas);
                 myCanvas.id = "myCanvas";
                 myCanvas.width = window.innerWidth;
-                myCanvas.height = 90 * 4;
+                myCanvas.height = 90;
 
 
                 //The text after the memory game
@@ -105,12 +106,12 @@
 
 
                 //The user´s colorboard
-                document.getElementById("textarea2").innerHTML +=
+                document.getElementById("textarea1").innerHTML +=
                     "PRESS THE ORDER YOU JUST SEEN: " + "<br>" + "<br>" + "<br>";
                 // Here will the order the user press on shows up
 
                 //The user´s colorboard
-                document.getElementById("textarea2").innerHTML +=
+                document.getElementById("textarea1").innerHTML +=
                     "👇 Your colorboard 👇";
 
                 // Loop for the dots.
@@ -119,63 +120,26 @@
                     var c = document.getElementById("myCanvas");
                     var ctx = c.getContext("2d");
                     ctx.beginPath();
-                    ctx.fillStyle = "red";
-                    // a,b,c a= size cirkle b = fill
                     ctx.arc(x, y, 10, 0, 10 * Math.PI);
+                    // Color in the circle
+                    ctx.fillStyle = "red",
+                        ctx.fill();
+                    // a,b,c a= size cirkle b = fill
+                    ctx.lineWidth = 2;
+
+                    //Color around the circle
+                    ctx.strokeStyle = "blue";
                     ctx.stroke();
                 }
 
-                for (i = 0; i < 5; i++) {
-                    for (j = 1; j <= 4; j++) {
+                for (i = 0; i < 17; i++) {
+                    for (j = 1; j <= 1; j++) {
                         // d: n + were at the board j * distance vertical between each circle
                         draw(n + 20, j * 30);
                     }
                     // the place between each other
                     n = 50 * i;
                 }
-
-                // Do a loop for buttons
-
-                const listUI = document.querySelector('.list');
-                const lis = listUI.children;
-
-                function createBtn(li) {
-                    const remove = document.createElement('button');
-                    remove.className = 'btn-icon remove'
-                    li.appendChild(remove);
-
-                    return li
-                }
-
-                for (var i = 0; i < lis.length; i++) {
-                    createBtn(list[i]);
-                }
-
-
-
-                if (id == "button1") {
-
-                    // You can press the buttons in some order who is the button on your colorboard
-                    var myButton1 = document.getElementById("button1");
-                    var myButton2 = document.getElementById("button2");
-                    var myButton3 = document.getElementById("button3");
-                    var myButton4 = document.getElementById("button4");
-                    var myButton5 = document.getElementById("button5");
-
-
-                }
-
-                var myButtonG = document.getElementById("Guess");
-                var myButtonR = document.getElementById("Reset");
-
-
-
-                //This will be in a loop, it will run some rounds
-                var myButtonA = document.getElementById("Add");
-                document.getElementById("Do you want to add a color to your board?")
-
-
-
             }
 
 
@@ -188,10 +152,9 @@
         }
 
 
-
-
         // Intro and when I have press (OK) the program will start running
         var intro = prompt("Hello and welcome to this game! Type in your name and then press " + "(OK)" + " to get the instruction.");
+
 
 
     </script>
