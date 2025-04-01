@@ -47,7 +47,7 @@
             gameareadiv.style.display = "none";
             var spacedivivtext = document.createTextNode("");
             // write gamecode
-            var gameareadivtext = document.createTextNode("- THE MEMORY-GAME - ");  
+            var gameareadivtext = document.createTextNode("- THE MEMORY-GAME - ");
             // BUTTON START/ RESET
             var startbutton = document.createElement("BUTTON");
             var startbuttontext = document.createTextNode("START");
@@ -64,9 +64,9 @@
 
             gamereaddivtext.appendChild(spacedivivtext);
             document.body.appendChild(spacedivdiv);
-;
+            ;
             gamereaddivtext.appendChild(spacedivivtext);
-                        document.body.appendChild(spacedivdiv)
+            document.body.appendChild(spacedivdiv)
         }
 
         //To get the text downbelow show and hide buttons
@@ -75,51 +75,84 @@
                 document.getElementById("gamearea").style.display = "block";
 
 
-         
-
-                const myCanvas = document.createElement("canvas");
-                document.getElementById("gamearea").appendChild(myCanvas);
-                myCanvas.id = "myCanvas";
-                myCanvas.width = window.innerWidth;
-                myCanvas.height = 90*4;
-
                 //The text after the memory game
-                const textareadiv = document.createElement("div");
-                textareadiv.id = "textarea";
+                var textareadiv = document.createElement("div");
+                textareadiv.id = "textarea1";
                 document.getElementById("gamearea").appendChild(textareadiv);
 
 
+                // Color who shows up loop for the dots.
+                document.getElementById("textarea1").innerHTML =
+                    "THIS IS THE COLORORDER YOU NEED TO REMEMBER 👇";
+
+                // This show the figure of colors
+                const myCanvas = document.createElement("canvas");
+                document.getElementById("textarea1").appendChild(myCanvas);
+                myCanvas.id = "myCanvas";
+                myCanvas.width = window.innerWidth;
+                myCanvas.height = 90 * 4;
 
 
-                
-                
-               
-            
+                //The text after the memory game
+                textareadiv = document.createElement("div");
+                textareadiv.id = "textarea2";
+                document.getElementById("gamearea").appendChild(textareadiv);   
 
-
-                   // Color who shows up loop for the dots.
-                document.getElementById("textarea").innerHTML =
-                    "<br>" + "THIS IS THE COLORORDER YOU NEED TO REMEMBER 👇" + "<br>" + "<br>" + "<br>" + "<br>" + "<br>" + "<br>" + "<br>" + "<br>";
 
                 // The game order not shows up = NOT WORKING
-                    // Here will the colororder the random colors to shows up
+                // Here will the colororder the random colors to shows up
 
 
 
                 //The user´s colorboard
-                document.getElementById("textarea").innerHTML +=
-                    "<br" + "<br>" + "PRESS THE ORDER YOU JUST SEEN: " + "<br>" + "<br>" + "<br>";
+                document.getElementById("textarea2").innerHTML +=
+                     "PRESS THE ORDER YOU JUST SEEN: " + "<br>" + "<br>" + "<br>";
                 // Here will the order the user press on shows up
-                   
+
                 //The user´s colorboard
-                document.getElementById("textarea").innerHTML +=
-                    "<br" + "<br>" + "👇 Your colorboard 👇" + "<br>" + "<br>";
+                document.getElementById("textarea2").innerHTML +=
+                    "👇 Your colorboard 👇";
 
-                // Here will the color for the colorbord be
+                // Loop for the dots.
+                var n = 0, m;
+                function draw(x, y) {
+                    var c = document.getElementById("myCanvas");
+                    var ctx = c.getContext("2d");
+                    ctx.beginPath();
+                    ctx.fillStyle = "red";
+                    // a,b,c a= size cirkle b = fill
+                    ctx.arc(x, y, 10, 0, 10 * Math.PI);
+                    ctx.stroke();
+                }
 
-                                document.getElementById("textarea").innerHTML +=
-                    "<br" + "<br>" + "👇 Your colorboard 👇" + "<br>" + "<br>";
-                
+                for (i = 0; i < 5; i++) {
+                    for (j = 1; j <= 4; j++) {
+                        // d: n + were at the board j * distance vertical between each circle
+                        draw(n + 20, j * 30);
+                    }
+                    // the place between each other
+                    n = 50 * i;
+                }
+
+                // Do a loop for buttons
+
+                const listUI = document.querySelector('.list');
+                const lis = listUI.children;
+
+                function createBtn(li) {
+                    const remove = document.createElement('button');
+                    remove.className = 'btn-icon remove'
+                    li.appendChild(remove);
+
+                    return li
+                }
+
+                for (var i = 0; i < lis.length; i++) {
+                    createBtn(list[i]);
+                }
+
+
+
                 if (id == "button1") {
 
                     // You can press the buttons in some order who is the button on your colorboard
@@ -139,10 +172,10 @@
 
                 //This will be in a loop, it will run some rounds
                 var myButtonA = document.getElementById("Add");
-                document.write("Do you want to add a color to your board?")
+                document.getElementById("Do you want to add a color to your board?")
 
 
-                
+
             }
 
 
@@ -152,26 +185,6 @@
                 document.getElementById("gamearea").style.display = "none";
             }
 
-            // Loop for the dots.
-            var n = 0, m;
-            function draw(x, y) {
-                var c = document.getElementById("myCanvas");
-                var ctx = c.getContext("2d");
-                ctx.beginPath();
-                ctx.fillStyle = "red";
-                // a,b,c a= size cirkle b = fill 
-                ctx.arc(x, y, 10, 0, 10 * Math.PI);
-                ctx.stroke();
-            }
-
-            for (i = 0; i < 5; i++) {
-                for (j = 1; j <= 4; j++) {
-                    // d: n + were at the board j * distance vertical between each circle
-                    draw(n + 50, j * 40);
-                }
-                // the place between each other
-                n = 40 * i;
-            }
         }
 
 
