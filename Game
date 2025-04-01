@@ -5,12 +5,14 @@
 </head>
 <body>
     <script>
+        // Intro and when I have press (OK) the program will start running
+        var intro = prompt("Hello and welcome to this game! Type in your name and then press " + "(OK)" + " to get the instruction.");
 
         //Function to show a texts in functional buttons
         function myFunction() {
             rulesdiv.style.display = "block";
-            document.getElementById("intro").style.display = "none"; 
-            document.getElementById("rulesbutton").style.display = "none";   
+            document.getElementById("intro").style.display = "none";
+            document.getElementById("rulesbutton").style.display = "none";
         }
 
         //To get the text downbelow show and hide buttons
@@ -85,15 +87,37 @@
         document.getElementById("textarea1").innerHTML =
             "THIS IS THE COLORORDER YOU NEED TO REMEMBER 👇";
 
-
-
-        //The user´s colorboard
-        document.getElementById("textarea1").innerHTML +=
-            "PRESS THE ORDER YOU JUST SEEN: " + "<br>" + "<br>" + "<br>";
         // Here will the order the user press on shows up
 
+        function createArrayOfRandomizedColors(count) {
+            // Make a array with different colors
+            var colors = ["red", "blue", "yellow", "green", "pink", "orange", "purple", "grey", "turquoise", "brown", "lime", "beige", "deeppink", "skyblue", "olive"];
+            var arrayOfRandomizedColors = new Array();
+            while (arrayOfRandomizedColors.length < count) {
+                // Math.floor to get a whole color
+                var color = Math.floor((Math.random() * 14) + 1);
+                arrayOfRandomizedColors.push(colors[color]);
+
+            }
+            // Put out the color on the board
+            return arrayOfRandomizedColors;
+        }
+
+
+        function drawNthCircleInColor(n, color) {
+            ctx.beginPath();
+            ctx.arc(50 * (n + 1) - 25, 25, 20, 0, 2 * Math.PI);
+            // To get a random color
+            ctx.fillStyle = color;
+            ctx.fill();
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = color;
+            ctx.stroke();
+        }
+
+
         //The user´s colorboard
-        document.getElementById("textarea1").innerHTML +=
+        document.getElementById("gamearea").innerHTML +=
             "👇 Your colorboard 👇";
 
         //The text after the memory game
@@ -107,35 +131,10 @@
         document.getElementById("textarea1").appendChild(canvas);
 
 
-
-        function createArrayOfRandomizedColors(count) {
-            // Make a array with different colors
-            var colors = ["red", "blue", "yellow", "green", "pink", "orange", "purple", "grey", "turquoise", "brown", "lime", "beige" , "deeppink" , "skyblue" , "olive"];
-            var arrayOfRandomizedColors = new Array();
-            while (arrayOfRandomizedColors.length < count) {
-                // Math.floor to get a whole color
-                var color = Math.floor((Math.random() * 14) + 1);
-                arrayOfRandomizedColors.push(colors[color]);
-           
-            }
-            // Put out the color on the board
-            return arrayOfRandomizedColors;
-        }
-
-        function drawNthCircleInColor(n, color) {
-            ctx.beginPath();
-            ctx.arc(50 * (n + 1) - 25, 25, 20, 0, 2 * Math.PI);
-            // To get a random color
-            ctx.fillStyle = color;
-            ctx.fill();
-            ctx.lineWidth = 1;
-            ctx.strokeStyle = color;
-            ctx.stroke();
-        }
-
         // To get a canvas on the board
         canvas.id = "myCanvas";
         canvas.height = 50; canvas.style = "border:1px solid #000000;"
+        canvas.style.display = "block";
         // At the board
         document.getElementById("gamearea").appendChild(canvas);
         const ctx = canvas.getContext("2d");
@@ -143,6 +142,12 @@
         textareadiv = document.createElement("div");
         textareadiv.id = "timer";
         document.getElementById("gamearea").appendChild(textareadiv);
+
+        // Timer display
+        var timerDisplay = document.createElement("div");
+        timerDisplay.id = "timer";
+        document.getElementById("gamearea").appendChild(timerDisplay);
+
 
 
         for (var numberOfBlobs = 1; numberOfBlobs < 16; numberOfBlobs++) {
@@ -152,18 +157,35 @@
             for (let index = 0; index < numberOfBlobs; index++) {
                 drawNthCircleInColor(index, arrayOfCorrectColors[index]);
             }
-            for (var i = 0; i < numberOfBlobs; i++) {
-                textareadiv.innerHTML = (numberOfBlobs - i) * 2;
-                setTimeout(1000); 
-            }
+            // Start the timer
+            startTimer(numberOfBlobs, function () {
+            });
         }
 
 
+        // Timer function
+        function startTimer() {
+            //The start timer
+            var timeLeft = numberOfBlobs; 
+            timerDisplay.innerHTML = "Time left: " + timeLeft + " seconds";
 
-        // Intro and when I have press (OK) the program will start running
-        var intro = prompt("Hello and welcome to this game! Type in your name and then press " + "(OK)" + " to get the instruction.");
+            var timer = setInterval(function () {
+                timeLeft--;
+                timerDisplay.innerHTML = "Time left: " + timeLeft + " seconds";
 
-
+                if (timeLeft <= 0) {
+                    clearInterval(timer); // Stop the timer
+                    document.getElementById("textarea1").innerHTML = "PRESS THE ORDER YOU JUST SEEN:";
+                }
+            }, 1000);
+        }
+        /*
+        // Button to start the timer
+        var timerButton = document.createElement("BUTTON");
+        timerButton.innerHTML = "START TIMER";
+        timerButton.onclick = startTimer;
+        document.getElementById("gamearea").appendChild(timerButton); // Add a timer to the gameboard
+        */
     </script>
 
 
@@ -179,3 +201,4 @@
 
 </body>
 </html>
+ 
