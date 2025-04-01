@@ -2,6 +2,7 @@
 <html>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <script>
         $(document).ready(function () {
             $("#hide").click(function () {
@@ -11,20 +12,7 @@
                 $("p").show();
             });
         });
-        // Intro and when I have press (OK) the program will start running
-        var intro = prompt("Hello and welcome to this game! Type in your name and then press " + "(OK)" + " to get the instruction.");
-        function functionshow() {
-            if (document.getElementById("gamearea").checkVisibility()) {
-                document.getElementById("gamearea").hide();
-            } else
-            document.getElementById("gamearea").show();
 
- 
-
-        }
-        function functionhide() {
-            
-        }
         function myFunction() {
             var showbutton = document.createElement("BUTTON");
 
@@ -52,8 +40,197 @@
             document.body.appendChild(showbutton);
             document.body.appendChild(hidebutton);
             showbutton.addEventListener("click", functionshow);
-            
+            hidebutton.addEventListener("click", functionhide);
+            var gameareadiv = document.createElement('div');
+            gameareadiv.id = "gamearea";
+            gameareadiv.style.display = "none";
+            var spacedivivtext = document.createTextNode("");
+            // write gamecode
+            var gameareadivtext = document.createTextNode("- THE MEMORY-GAME - ");  
+            var gamereaddivtext = document.createTextNode("YOUR COLORBOARD ");
+            var orderdivtext = document.createTextNode("GUESS THE ORDER");
+            // BUTTON START/ RESET
+            var startbutton = document.createElement("BUTTON");
+            var startbuttontext = document.createTextNode("START");
+            var resetbutton = document.createElement("BUTTON");
+            var resetbuttontext = document.createTextNode("RESET");
+
+            //Game layut
+            gameareadiv.appendChild(gameareadivtext);
+            gameareadiv.appendChild(gamereaddivtext);
+
+            gameareadiv.appendChild(orderdivtext);
+            document.body.appendChild(gameareadiv);
+
+            gameareadiv.appendChild(spacedivivtext);
+            document.body.appendChild(spacedivdiv);
+
+            gamereaddivtext.appendChild(spacedivivtext);
+            document.body.appendChild(spacedivdiv);
+;
+            gamereaddivtext.appendChild(spacedivivtext);
+                        document.body.appendChild(spacedivdiv)
         }
+        function functionshow() {
+            if (document.getElementById("gamearea").style.display == "none") {
+                document.getElementById("gamearea").style.display = "block";
+                const myCanvas = document.createElement("canvas");
+                document.getElementById("gamearea").appendChild(myCanvas);
+                myCanvas.id = "myCanvas";
+
+                const textareadiv = document.createElement("div");
+                textareadiv.id = "textarea";
+                document.getElementById("gamearea").appendChild(textareadiv);
+
+                //First line
+                // Color who shows up
+                //  x ,  y , width , height
+                const a = document.getElementById("myCanvas");
+                const atx = a.getContext("2d");
+                atx.fillStyle = "red";
+                //  x ,  y , width , height
+                atx.fillRect(10, 10, 40, 40);
+
+                const b = document.getElementById("myCanvas");
+                const btx = b.getContext("2d");
+                btx.fillStyle = "red";
+                //  x ,  y , width , height
+                btx.fillRect(60, 10, 40, 40);
+
+                const c = document.getElementById("myCanvas");
+                const ctx = c.getContext("2d");
+                ctx.fillStyle = "red";
+                //  x ,  y , width , height
+                ctx.fillRect(110, 10, 40, 40);
+
+                const d = document.getElementById("myCanvas");
+                const dtx = d.getContext("2d");
+                dtx.fillStyle = "red";
+                //  x ,  y , width , height
+                dtx.fillRect(160, 10, 40, 40);
+
+                const e = document.getElementById("myCanvas");
+                const etx = e.getContext("2d");
+                etx.fillStyle = "red";
+                //  x ,  y , width , height
+                etx.fillRect(210, 10, 40, 40);
+
+                // secound line
+
+                const f = document.getElementById("myCanvas");
+                const ftx = f.getContext("2d");
+                ftx.fillStyle = "red";
+                //  x ,  y , width , height
+                ftx.fillRect(10, 60, 40, 40);
+
+                const g = document.getElementById("myCanvas");
+                const gtx = g.getContext("2d");
+                gtx.fillStyle = "red";
+                //  x ,  y , width , height
+                gtx.fillRect(60, 60, 40, 40);
+
+                const h = document.getElementById("myCanvas");
+                const htx = h.getContext("2d");
+                htx.fillStyle = "red";
+                //  x ,  y , width , height
+                htx.fillRect(110, 60, 40, 40);
+
+                const i = document.getElementById("myCanvas");
+                const itx = i.getContext("2d");
+                itx.fillStyle = "red";
+                //  x ,  y , width , height
+                etx.fillRect(160, 60, 40, 40);
+
+                const j = document.getElementById("myCanvas");
+                const jtx = j.getContext("2d");
+                jtx.fillStyle = "red";
+                //  x ,  y , width , height
+                jtx.fillRect(210, 60, 40, 40);
+
+                //third line
+                const k = document.getElementById("myCanvas");
+                const ktx = k.getContext("2d");
+                ktx.fillStyle = "red";
+                //  x ,  y , width , height
+                ktx.fillRect(10, 110, 40, 40);
+
+                const l = document.getElementById("myCanvas");
+                const ltx = l.getContext("2d");
+                ltx.fillStyle = "red";
+                //  x ,  y , width , height
+                ltx.fillRect(60, 110, 40, 40);
+
+                const m = document.getElementById("myCanvas");
+                const mtx = m.getContext("2d");
+                ltx.fillStyle = "red";
+                //  x ,  y , width , height
+                ltx.fillRect(110, 110, 40, 40);
+
+                const n = document.getElementById("myCanvas");
+                const ntx = n.getContext("2d");
+                ltx.fillStyle = "red";
+                //  x ,  y , width , height
+                ltx.fillRect(160, 110, 40, 40);
+
+                const o = document.getElementById("myCanvas");
+                const otx = o.getContext("2d");
+                ltx.fillStyle = "red";
+                //  x ,  y , width , height
+                ltx.fillRect(210, 110, 40, 40);
+
+                const p = document.getElementById("myCanvas");
+                const ptx = p.getContext("2d");
+                ltx.fillStyle = "red";
+
+                // The user´s colorboard
+                //document.getElementById("textarea").innerHTML = "<br" + "<br>" + " " + "<br>" + "<br>";
+                document.getElementById("textarea").innerHTML =
+                "Press the order you just seen:" + "<br>" + "<br>" + "<br>" + "<br>";
+
+
+
+                // The guess board
+                document.getElementById("textarea").innerHTML +=
+                "<br" + "<br>" + "👇 Your colorboard 👇" + "<br>" + "<br>";
+
+
+
+                /*
+                if (id == "button1") {
+
+                    // You can press the buttons in some order who is the button on your colorboard
+                    var myButton1 = document.getElementById("button1");
+                    var myButton2 = document.getElementById("button2");
+                    var myButton3 = document.getElementById("button3");
+                    var myButton4 = document.getElementById("button4");
+                    var myButton5 = document.getElementById("button5");
+
+
+                }
+
+                var myButtonG = document.getElementById("Guess");
+                var myButtonR = document.getElementById("Reset");
+
+
+                //This will be in a loop, it will run some rounds
+                var myButtonA = document.getElementById("Add");
+                document.write("Do you want to add a color to your board?")
+
+
+                // The buttons colorboard
+
+                */
+            }
+
+
+        }
+        function functionhide() {
+            if (document.getElementById("gamearea").style.display == "block") {
+                document.getElementById("gamearea").style.display = "none";
+            }
+        }
+        // Intro and when I have press (OK) the program will start running
+        var intro = prompt("Hello and welcome to this game! Type in your name and then press " + "(OK)" + " to get the instruction.");
     </script>
 </head>
 <body>
@@ -65,6 +242,8 @@
     </p>
 
     <button onclick="myFunction()">RULES</button>
+
+
 
 </body>
 </html>
