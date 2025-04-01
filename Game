@@ -1,22 +1,29 @@
-<p> This game is a memory game there you gonna see how good memory you have! For every round you win it gonna be harder and harder up to levle 14 who is the last levle! If you press wrong button you need to start all over again! <br>  <br>  Press (RULES) to see the rules. <br></p>
+<p>
+    This game is a memory game there you gonna see how good memory you have!
+    For every round you win it gonna be harder and harder up to levle 14 who is the last levle!
+    If you press the wrong button you need to start all over again! <br>  <br>  Press the (RULES) down below to see the rules. <br>
+</p>
 <button onclick="myFunction()">RULES</button>
+
 <script>
     // Intro and when I have press (OK) the program will start running
     var intro = prompt("Hello and welcome to this game! Type in your name and then press " + "(OK)" + " to get the instruction");
     //Click on the button rules
 
     function myFunction() {
-        var one = document.createElement("RULES");
-        var two = document.createTextNode("START");
-        two.appendChild(one);
-        document.body.appendChild(two);
-    }
-        {
-        //The rules added
-        var rules = document.write(intro + "! It is time to review the rules! " + "<br>" + "<br>" + "RULES:" + "<br> " + "1. You have 10 secound each round to memorize the color." + "<br>" +
+        var button = document.createElement("BUTTON");
+        var start = document.createTextNode("START");
+        button.appendChild(t);
+
+        //When you have press the button St
+        var rules = document.write("Hi " + intro + "! It is time to review the rules! " + "<br>" + "<br>" + "RULES:" + "<br> " + "1. You have 15 secound each round to memorize the color." + "<br>" +
             " 2. After every 5 round the possison of colors you choose between mixed and you can not change this." + "<br> " +
-            "3. After every 6 rounds you have the oppertunity to add a color to the color you choose between, it is up to you if you want that" + "<br> " +
-            "4. If you tap in the wrong order you lose!" + "<br> " + "<br> " + "Press (START) to start the game");
-    }
+            "3. After every 6th round you have the opportunity to add a color to choose from, it is up to you if you want that" + "<br> " +
+            "4. If you tap in the wrong order you lose!" + "<br>" + "Good luck " + intro + "!" + "<br> " + "<br> " + "Press (START) down below to start the game")"<br> ";
+        document.body.appendChild(button);
+}
+
+
 
     // The start buttom do that the game start running
+</script>
