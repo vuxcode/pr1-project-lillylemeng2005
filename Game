@@ -1,39 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    ></script>
-    <p>
-        This game is a memory game there you gonna see how good memory you have! <br />
-        For every round you win it gonna be harder and harder up to levle 14 who is the last levle! <br />
-        If you press the wrong button you need to start all over again! <br/> Press (RULES) down below to see the rules. <br />
-    </p>
-    <button onclick="myFunction()">RULES</button>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
+        $(document).ready(function () {
+            $("#hide").click(function () {
+                $("p").hide();
+            });
+            $("#show").click(function () {
+                $("p").show();
+            });
+        });
         // Intro and when I have press (OK) the program will start running
-        var intro = prompt("Hello and welcome to this game! Type in your name and then press " + "(OK)" + " to get the instruction");
-        function myFunction() {
-            var button = document.createElement("BUTTON");
+        var intro = prompt("Hello and welcome to this game! Type in your name and then press " + "(OK)" + " to get the instruction.");
+        function functionshow() {
+            if (document.getElementById("gamearea").checkVisibility()) {
+                document.getElementById("gamearea").hide();
+            } else
+            document.getElementById("gamearea").show();
 
-            var start = document.createTextNode("START");
+ 
+
+        }
+        function functionhide() {
+            
+        }
+        function myFunction() {
+            var showbutton = document.createElement("BUTTON");
+
+            var showbuttontext = document.createTextNode("SHOW");
+
+            var hidebutton = document.createElement("BUTTON");
+
+            var hidebuttontext = document.createTextNode("HIDE");
             // You see text Start
-            button.appendChild(start);
+            showbutton.appendChild(showbuttontext);
+            hidebutton.appendChild(hidebuttontext);
 
             //When you have press the button RULES you come to a new site there you can see the rules
-            var rules = document.write("Hi " + intro + "! It is time to review the rules! " + "<br>" + "<br>" + "RULES:" + "<br> " + "1. You have 15 secound each round to memorize the color." + "<br>" +
+            var rules = document.write("Hi " + intro + "! It is time to review the rules! " + "<br>" + "<br>" + "RULES:" + "<br> "
+                + "1. You have 15 secound each round to memorize the color." + "<br>" +
                 " 2. After every 5 round the possison of colors you choose between mixed and you can not change this." + "<br> " +
-                "3. After every 6th round you have the opportunity to add a color to choose from, it is up to you if you want that" + "<br> " +
-                "4. If you tap in the wrong order you lose!" + "<br>" + "Good luck " + intro + "!" + "<br> " 
-                + "<br> " + "Press (START) down below to start the game!" + "<br> ");
+                "3. After every 6th round you have the opportunity to add a color to choose from, it is up to you if you want that." + "<br> " +
+                "4. If you tap in the wrong order you lose!" + "<br>"
+                + "Good luck " + intro + "!" + "<br> " + "<br> " + "Press \"SHOW\" down below to view the gamingboard and \"HIDE\" if you want to hide the game!"
+                + "<br>" + "This will not start / stop the game!"
+                + "<br>" + "<br>");
+
+            //You see the start button on the ruleside
             //You see the start button
-            document.body.appendChild(button);
-            document.createEvent
+            document.body.appendChild(showbutton);
+            document.body.appendChild(hidebutton);
+            showbutton.addEventListener("click", functionshow);
+            
+        }
     </script>
 </head>
 <body>
 
-    <p>Click on the ""Show"" button to see the gameboard, This will not start the game! <br /> If you press "Hide" the gameboard disappears and you will only see the rules!".</p>
-    <button id="show">Show</button>
-    <button id="hide">Hide</button>
+    <p>
+        This game is a memory game there you gonna see how good memory you have! <br />
+        For every round you win it gonna be harder and harder up to levle 14 who is the last levle! <br />
+        If you press the wrong button you need to start all over again! <br /> <br /> Press (RULES) down below to see the rules. <br /> <br />
+    </p>
+
+    <button onclick="myFunction()">RULES</button>
+
 </body>
 </html>
