@@ -90,7 +90,7 @@
                 document.getElementById("textarea1").appendChild(myCanvas);
                 myCanvas.id = "myCanvas";
                 myCanvas.width = window.innerWidth;
-                myCanvas.height = 90 * 4;
+                myCanvas.height = 90 * 2;
 
 
                 //The text after the memory game
@@ -109,11 +109,16 @@
                      "PRESS THE ORDER YOU JUST SEEN: " + "<br>" + "<br>" + "<br>";
                 // Here will the order the user press on shows up
 
+                
+
+
                 //The user´s colorboard
                 document.getElementById("textarea2").innerHTML +=
                     "👇 Your colorboard 👇";
 
-                // Loop for the dots.
+                        
+
+
                 var n = 0, m;
                 function draw(x, y) {
                     var c = document.getElementById("myCanvas");
