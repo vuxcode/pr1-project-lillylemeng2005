@@ -2,188 +2,22 @@
 <html>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+</head>
+<body>
     <script>
-        $(document).ready(function () {
-            $("#hide").click(function () {
-                $("p").hide();
-            });
-            $("#show").click(function () {
-                $("p").show();
-            });
-        });
 
         //Function to show a texts in functional buttons
         function myFunction() {
-            var showbutton = document.createElement("BUTTON");
-
-            var showbuttontext = document.createTextNode("SHOW");
-
-            var hidebutton = document.createElement("BUTTON");
-
-            var hidebuttontext = document.createTextNode("HIDE");
-            // You see text Start
-            showbutton.appendChild(showbuttontext);
-            hidebutton.appendChild(hidebuttontext);
-
-            //When you have press the button RULES you come to a new site there you can see the rules
-            var rules = document.write("Hi " + intro + "! It is time to review the rules! " + "<br>" + "<br>" + "RULES:" + "<br> "
-                + "1. You have 15 secound each round to memorize the color." + "<br>" +
-                " 2. After every 5 round the possison of colors you choose between mixed and you can not change this." + "<br> " +
-                "3. After every 6th round you have the opportunity to add a color to choose from, it is up to you if you want that." + "<br> " +
-                "4. If you tap in the wrong order you lose!" + "<br>"
-                + "Good luck " + intro + "!" + "<br> " + "<br> " + "Press \"SHOW\" down below to view the gamingboard and \"HIDE\" if you want to hide the game!"
-                + "<br>" + "This will not start / stop the game!"
-                + "<br>" + "<br>");
-
-            //You see the start button on the ruleside
-            //You see the start button
-            document.body.appendChild(showbutton);
-            document.body.appendChild(hidebutton);
-            showbutton.addEventListener("click", functionshow);
-            hidebutton.addEventListener("click", functionhide);
-            var gameareadiv = document.createElement('div');
-            gameareadiv.id = "gamearea";
-            gameareadiv.style.display = "none";
-            var spacedivivtext = document.createTextNode("");
-            // write gamecode
-            var gameareadivtext = document.createTextNode("- THE MEMORY-GAME - ");
-            // BUTTON START/ RESET
-            var startbutton = document.createElement("BUTTON");
-            var startbuttontext = document.createTextNode("START");
-            var resetbutton = document.createElement("BUTTON");
-            var resetbuttontext = document.createTextNode("RESET");
-
-            //Game layut
-            gameareadiv.appendChild(gameareadivtext);
-
-            document.body.appendChild(gameareadiv);
-
-            gameareadiv.appendChild(spacedivivtext);
-            document.body.appendChild(spacedivdiv);
-
-            gamereaddivtext.appendChild(spacedivivtext);
-            document.body.appendChild(spacedivdiv);
-            ;
-            gamereaddivtext.appendChild(spacedivivtext);
-            document.body.appendChild(spacedivdiv)
+            rulesdiv.style.display = "block";
+            document.getElementById("intro").style.display = "none"; 
+            document.getElementById("rulesbutton").style.display = "none";   
         }
 
         //To get the text downbelow show and hide buttons
         function functionshow() {
             if (document.getElementById("gamearea").style.display == "none") {
                 document.getElementById("gamearea").style.display = "block";
-
-
-                //The text after the memory game
-                var textareadiv = document.createElement("div");
-                textareadiv.id = "textarea1";
-                document.getElementById("gamearea").appendChild(textareadiv);
-
-
-                // Color who shows up loop for the dots.
-                document.getElementById("textarea1").innerHTML =
-                    "THIS IS THE COLORORDER YOU NEED TO REMEMBER 👇";
-
-                // This show the figure of colors
-                const myCanvas = document.createElement("canvas");
-                document.getElementById("textarea1").appendChild(myCanvas);
-                myCanvas.id = "myCanvas";
-                myCanvas.width = window.innerWidth;
-                myCanvas.height = 90 * 2;
-
-
-                //The text after the memory game
-                textareadiv = document.createElement("div");
-                textareadiv.id = "textarea2";
-                document.getElementById("gamearea").appendChild(textareadiv);   
-
-
-                // The game order not shows up = NOT WORKING
-                // Here will the colororder the random colors to shows up
-
-
-
-                //The user´s colorboard
-                document.getElementById("textarea2").innerHTML +=
-                     "PRESS THE ORDER YOU JUST SEEN: " + "<br>" + "<br>" + "<br>";
-                // Here will the order the user press on shows up
-
-                
-
-
-                //The user´s colorboard
-                document.getElementById("textarea2").innerHTML +=
-                    "👇 Your colorboard 👇";
-
-                        
-
-
-                var n = 0, m;
-                function draw(x, y) {
-                    var c = document.getElementById("myCanvas");
-                    var ctx = c.getContext("2d");
-                    ctx.beginPath();
-                    ctx.fillStyle = "red";
-                    // a,b,c a= size cirkle b = fill
-                    ctx.arc(x, y, 10, 0, 10 * Math.PI);
-                    ctx.stroke();
-                }
-
-                for (i = 0; i < 5; i++) {
-                    for (j = 1; j <= 4; j++) {
-                        // d: n + were at the board j * distance vertical between each circle
-                        draw(n + 20, j * 30);
-                    }
-                    // the place between each other
-                    n = 50 * i;
-                }
-
-                // Do a loop for buttons
-
-                const listUI = document.querySelector('.list');
-                const lis = listUI.children;
-
-                function createBtn(li) {
-                    const remove = document.createElement('button');
-                    remove.className = 'btn-icon remove'
-                    li.appendChild(remove);
-
-                    return li
-                }
-
-                for (var i = 0; i < lis.length; i++) {
-                    createBtn(list[i]);
-                }
-
-
-
-                if (id == "button1") {
-
-                    // You can press the buttons in some order who is the button on your colorboard
-                    var myButton1 = document.getElementById("button1");
-                    var myButton2 = document.getElementById("button2");
-                    var myButton3 = document.getElementById("button3");
-                    var myButton4 = document.getElementById("button4");
-                    var myButton5 = document.getElementById("button5");
-
-
-                }
-
-                var myButtonG = document.getElementById("Guess");
-                var myButtonR = document.getElementById("Reset");
-
-
-
-                //This will be in a loop, it will run some rounds
-                var myButtonA = document.getElementById("Add");
-                document.getElementById("Do you want to add a color to your board?")
-
-
-
             }
-
-
         }
         function functionhide() {
             if (document.getElementById("gamearea").style.display == "block") {
@@ -191,7 +25,138 @@
             }
 
         }
+        // To get the rules
+        var rulesdiv = document.createElement("div");
+        rulesdiv.id = "rulesarea";
+        rulesdiv.style.display = "none";
+        document.body.appendChild(rulesdiv);
+        var showbutton = document.createElement("BUTTON");
 
+        var showbuttontext = document.createTextNode("SHOW");
+
+        var hidebutton = document.createElement("BUTTON");
+
+        var hidebuttontext = document.createTextNode("HIDE");
+        // You see text Start
+        showbutton.appendChild(showbuttontext);
+        hidebutton.appendChild(hidebuttontext);
+
+
+        //When you have press the button RULES you come to a new site there you can see the rules
+        rulesdiv.innerHTML = "Hi " + intro + "! It is time to review the rules! " + "<br>" + "<br>" + "RULES:" + "<br> "
+            + "1. You have 15 secound each round to memorize the color." + "<br>" +
+            " 2. After every 5 round the possison of colors you choose between mixed and you can not change this." + "<br> " +
+            "3. After every 6th round you have the opportunity to add a color to choose from, it is up to you if you want that." + "<br> " +
+            "4. If you tap in the wrong order you lose!" + "<br>"
+            + "Good luck " + intro + "!" + "<br> " + "<br> " + "Press \"SHOW\" down below to view the gamingboard and \"HIDE\" if you want to hide the game!"
+            + "<br>" + "This will not start / stop the game!"
+            + "<br>" + "<br>";
+
+        //You see the start button on the ruleside
+        //You see the start button
+        rulesdiv.appendChild(showbutton);
+        rulesdiv.appendChild(hidebutton);
+        showbutton.addEventListener("click", functionshow);
+        hidebutton.addEventListener("click", functionhide);
+        var gameareadiv = document.createElement('div');
+        gameareadiv.id = "gamearea";
+        gameareadiv.style.display = "none";
+        var spacedivivtext = document.createTextNode("");
+        // write gamecode
+        var gameareadivtext = document.createTextNode("- THE MEMORY-GAME - ");
+        // BUTTON START/ RESET
+        var startbutton = document.createElement("BUTTON");
+        var startbuttontext = document.createTextNode("START");
+        var resetbutton = document.createElement("BUTTON");
+        var resetbuttontext = document.createTextNode("RESET");
+
+        //Game layut
+        gameareadiv.appendChild(gameareadivtext);
+
+        document.body.appendChild(gameareadiv);
+
+        //The text after the memory game
+        var textareadiv = document.createElement("div");
+        textareadiv.id = "textarea1";
+        document.getElementById("gamearea").appendChild(textareadiv);
+
+
+        // Color who shows up loop for the dots.
+        document.getElementById("textarea1").innerHTML =
+            "THIS IS THE COLORORDER YOU NEED TO REMEMBER 👇";
+
+
+
+        //The user´s colorboard
+        document.getElementById("textarea1").innerHTML +=
+            "PRESS THE ORDER YOU JUST SEEN: " + "<br>" + "<br>" + "<br>";
+        // Here will the order the user press on shows up
+
+        //The user´s colorboard
+        document.getElementById("textarea1").innerHTML +=
+            "👇 Your colorboard 👇";
+
+        //The text after the memory game
+        textareadiv = document.createElement("div");
+        textareadiv.id = "textarea2";
+        document.getElementById("gamearea").appendChild(textareadiv);
+
+
+        // The game order not shows up = NOT WORKING
+        // Here will the colororder the random colors to shows up
+        const canvas = document.createElement("canvas");
+        document.getElementById("textarea1").appendChild(canvas);
+
+
+        function createArrayOfRandomizedColors(count) {
+            // Make a array with different colors
+            var colors = ["red" , "blue" , "yellow" , "green" , "black"];
+            var arrayOfRandomizedColors = new Array();
+            while (arrayOfRandomizedColors.length < count) {
+                // Math.floor to get a whole color
+                var color = Math.floor((Math.random() * 5) + 1);
+                arrayOfRandomizedColors.push(colors[color]);
+           
+            }
+            // Put out the color on the board
+            return arrayOfRandomizedColors;
+        }
+
+        function drawNthCircleInColor(n, color) {
+            ctx.beginPath();
+            ctx.arc(50 * (n + 1) - 25, 25, 20, 0, 2 * Math.PI);
+            // To get a random color
+            ctx.fillStyle = color;
+            ctx.fill();
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = color;
+            ctx.stroke();
+        }
+
+        // To get a canvas on the board
+        canvas.id = "myCanvas";
+        canvas.height = 50; canvas.style = "border:1px solid #000000;"
+        // At the board
+        document.getElementById("gamearea").appendChild(canvas);
+        const ctx = canvas.getContext("2d");
+
+        textareadiv = document.createElement("div");
+        textareadiv.id = "timer";
+        document.getElementById("gamearea").appendChild(textareadiv);
+
+
+        for (var numberOfBlobs = 1; numberOfBlobs < 16; numberOfBlobs++) {
+            canvas.width = 50 * numberOfBlobs;
+            var arrayOfCorrectColors = createArrayOfRandomizedColors(numberOfBlobs);
+
+            for (let index = 0; index < numberOfBlobs; index++) {
+                drawNthCircleInColor(index, arrayOfCorrectColors[index]);
+            }
+            for (var i = 0; i < numberOfBlobs; i++) {
+                textareadiv.innerHTML = (numberOfBlobs - i) * 2;
+                setTimeout(1000); 
+            }
+        }
 
 
 
@@ -200,16 +165,15 @@
 
 
     </script>
-</head>
-<body>
 
-    <p>
+
+    <div id="intro">
         This game is a memory game there you gonna see how good memory you have! <br />
         For every round you win it gonna be harder and harder up to levle 14 who is the last levle! <br />
         If you press the wrong button you need to start all over again! <br /> <br /> Press (RULES) down below to see the rules. <br /> <br />
-    </p>
+    </div>
 
-    <button onclick="myFunction()">RULES</button>
+    <button id="rulesbutton" onclick="myFunction()">RULES</button>
 
 
 
