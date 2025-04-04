@@ -87,7 +87,19 @@
         document.getElementById("textarea1").innerHTML =
             "THIS IS THE COLORORDER YOU NEED TO REMEMBER 👇";
 
-        // Here will the order the user press on shows up
+        
+
+        //The text after the memory game
+        textareadiv = document.createElement("div");
+        textareadiv.id = "textarea2";
+        document.getElementById("gamearea").appendChild(textareadiv);
+
+
+        // Here will the colororder the random colors to shows up
+        const canvas = document.createElement("canvas");
+        document.getElementById("textarea1").appendChild(canvas);
+
+
 
         function createArrayOfRandomizedColors(count) {
             // Make a array with different colors
@@ -103,7 +115,6 @@
             return arrayOfRandomizedColors;
         }
 
-
         function drawNthCircleInColor(n, color) {
             ctx.beginPath();
             ctx.arc(50 * (n + 1) - 25, 25, 20, 0, 2 * Math.PI);
@@ -115,26 +126,9 @@
             ctx.stroke();
         }
 
-
-        //The user´s colorboard
-        document.getElementById("gamearea").innerHTML +=
-            "👇 Your colorboard 👇";
-
-        //The text after the memory game
-        textareadiv = document.createElement("div");
-        textareadiv.id = "textarea2";
-        document.getElementById("gamearea").appendChild(textareadiv);
-
-
-        // Here will the colororder the random colors to shows up
-        const canvas = document.createElement("canvas");
-        document.getElementById("textarea1").appendChild(canvas);
-
-
         // To get a canvas on the board
         canvas.id = "myCanvas";
         canvas.height = 50; canvas.style = "border:1px solid #000000;"
-        canvas.style.display = "block";
         // At the board
         document.getElementById("gamearea").appendChild(canvas);
         const ctx = canvas.getContext("2d");
@@ -142,12 +136,6 @@
         textareadiv = document.createElement("div");
         textareadiv.id = "timer";
         document.getElementById("gamearea").appendChild(textareadiv);
-
-        // Timer display
-        var timerDisplay = document.createElement("div");
-        timerDisplay.id = "timer";
-        document.getElementById("gamearea").appendChild(timerDisplay);
-
 
 
         for (var numberOfBlobs = 1; numberOfBlobs < 16; numberOfBlobs++) {
@@ -157,16 +145,29 @@
             for (let index = 0; index < numberOfBlobs; index++) {
                 drawNthCircleInColor(index, arrayOfCorrectColors[index]);
             }
-            // Start the timer
-            startTimer(numberOfBlobs, function () {
-            });
+            for (var i = 0; i < numberOfBlobs; i++) {
+                textareadiv.innerHTML = (numberOfBlobs - i) * 2;
+                setTimeout(1000);
+            }
         }
+        // Text under color blobs for "Your color board"
+        var colorBoardText = document.createElement("div");
+        colorBoardText.id = "colorBoardText";
+        colorBoardText.innerHTML = "👇 Your colorboard 👇";
+        document.getElementById("gamearea").appendChild(colorBoardText);
+        
+        // The buttons for the colorboard
 
+
+
+        // Timer display
+        var timerDisplay = document.createElement("div");
+        timerDisplay.id = "timer";
+        document.getElementById("gamearea").appendChild(timerDisplay);
 
         // Timer function
         function startTimer() {
-            //The start timer
-            var timeLeft = numberOfBlobs; 
+            var timeLeft = numberOfBlobs
             timerDisplay.innerHTML = "Time left: " + timeLeft + " seconds";
 
             var timer = setInterval(function () {
@@ -174,18 +175,27 @@
                 timerDisplay.innerHTML = "Time left: " + timeLeft + " seconds";
 
                 if (timeLeft <= 0) {
-                    clearInterval(timer); // Stop the timer
-                    document.getElementById("textarea1").innerHTML = "PRESS THE ORDER YOU JUST SEEN:";
+                    clearInterval(timer);
+                    document.getElementById("textarea1").innerHTML += ("PRESS THE ORDER YOU JUST SEEN:");
+                    var canvas = document.getElementById("myCanvas");
+                    if (canvas) {
+                        //Hide the canvas
+                        canvas.style.display = "none"; 
+                    }
+                    if (textarea1) {
+                        //Hide the text
+                        textarea1.style.display = "none";
+                    }
                 }
             }, 1000);
         }
-        /*
+
         // Button to start the timer
         var timerButton = document.createElement("BUTTON");
         timerButton.innerHTML = "START TIMER";
         timerButton.onclick = startTimer;
-        document.getElementById("gamearea").appendChild(timerButton); // Add a timer to the gameboard
-        */
+        document.getElementById("gamearea").appendChild(timerButton); // To start the timer
+
     </script>
 
 
@@ -201,4 +211,3 @@
 
 </body>
 </html>
- 
