@@ -131,6 +131,7 @@
         canvas.height = 50; canvas.style = "border:1px solid #000000;"
         // At the board
         document.getElementById("gamearea").appendChild(canvas);
+        canvas.style.display = "none";
         const ctx = canvas.getContext("2d");
 
         textareadiv = document.createElement("div");
@@ -155,18 +156,27 @@
         colorBoardText.id = "colorBoardText";
         colorBoardText.innerHTML = "👇 Your colorboard 👇";
         document.getElementById("gamearea").appendChild(colorBoardText);
-        
+
+
+        // If timer not have start the canva is not visable
+        function notTimer() {
+            if (timerButton.onclick = false) {
+                canvas.style.display = "none"; 
+            }
+           
+        }
+        xyz 
+
         // The buttons for the colorboard
-
-
 
         // Timer display
         var timerDisplay = document.createElement("div");
         timerDisplay.id = "timer";
         document.getElementById("gamearea").appendChild(timerDisplay);
-
+        
         // Timer function
         function startTimer() {
+            canvas.style.display = "block";
             var timeLeft = numberOfBlobs
             timerDisplay.innerHTML = "Time left: " + timeLeft + " seconds";
 
@@ -182,8 +192,9 @@
                         //Hide the canvas
                         canvas.style.display = "none"; 
                     }
+                    
                     if (textarea1) {
-                        //Hide the text
+                        //Hide the text after - THE MEMORY-GAME -
                         textarea1.style.display = "none";
                     }
                 }
