@@ -87,7 +87,7 @@
         document.getElementById("textarea1").innerHTML =
             "THIS IS THE COLORORDER YOU NEED TO REMEMBER 👇";
 
-        
+
 
         //The text after the memory game
         textareadiv = document.createElement("div");
@@ -134,12 +134,16 @@
         canvas.style.display = "none";
         const ctx = canvas.getContext("2d");
 
+        // Hide the text THIS IS THE COLORORDER... before the timer sets
+        textarea1.style.display = "none";
+
         textareadiv = document.createElement("div");
         textareadiv.id = "timer";
         document.getElementById("gamearea").appendChild(textareadiv);
 
 
-        for (var numberOfBlobs = 1; numberOfBlobs < 16; numberOfBlobs++) {
+
+        for (var numberOfBlobs = 1; numberOfBlobs < 5; numberOfBlobs++) {
             canvas.width = 50 * numberOfBlobs;
             var arrayOfCorrectColors = createArrayOfRandomizedColors(numberOfBlobs);
 
@@ -158,27 +162,33 @@
         document.getElementById("gamearea").appendChild(colorBoardText);
 
 
-        // If timer not have start the canva is not visable
-        function notTimer() {
-            if (timerButton.onclick = false) {
-                canvas.style.display = "none"; 
+        // The buttons for the colorboard,Print the colorbuttons
+        function printcolorbuttons() {
+            // Make a array with different colors
+            var buttonlist = [colors];
+            for (var i = 0; i < buttonlist.length; i++) {
+                var makebutton = document.createElement("button");
+                var buttontexts = document.createTextNode(buttonlist[i]);
+                colorButtons.appendChild(t);
+                document.body.appendChild(colorButtons)
             }
-           
+            return buttonlist
         }
-        xyz 
 
-        // The buttons for the colorboard
 
         // Timer display
         var timerDisplay = document.createElement("div");
         timerDisplay.id = "timer";
         document.getElementById("gamearea").appendChild(timerDisplay);
-        
+
         // Timer function
         function startTimer() {
-            canvas.style.display = "block";
+            canvas.style.display = "block";  // The color to rememberpops up
+            textarea1.style.display = "block"; // Hide the "this is your colorboard" before set timer
+
             var timeLeft = numberOfBlobs
             timerDisplay.innerHTML = "Time left: " + timeLeft + " seconds";
+
 
             var timer = setInterval(function () {
                 timeLeft--;
@@ -190,13 +200,20 @@
                     var canvas = document.getElementById("myCanvas");
                     if (canvas) {
                         //Hide the canvas
-                        canvas.style.display = "none"; 
+                        canvas.style.display = "none";
                     }
-                    
+
                     if (textarea1) {
-                        //Hide the text after - THE MEMORY-GAME -
+                        //Hide the text COLORORDER
                         textarea1.style.display = "none";
                     }
+                    //Hide the timebutton when the countdown is done
+                    if (timerButton) {
+
+                        timerButton.style.display = "none";
+                    }
+
+
                 }
             }, 1000);
         }
@@ -206,7 +223,6 @@
         timerButton.innerHTML = "START TIMER";
         timerButton.onclick = startTimer;
         document.getElementById("gamearea").appendChild(timerButton); // To start the timer
-
     </script>
 
 
