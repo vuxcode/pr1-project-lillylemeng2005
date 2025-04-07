@@ -70,14 +70,21 @@
         document.body.appendChild(gameareadiv);
 
         //Game layut
-        var gameareadivtext = document.createTextNode("- THE MEMORY-GAME - "); 
+        var gameareadivtext = document.createTextNode("- THE MEMORY-GAME - ");
         gameareadiv.appendChild(gameareadivtext);
 
-        //The text after the memory game
-        var textareadiv = document.createElement("div");
-        textareadiv.id = "textarea1";
-        textareadiv.style.display = "none";
-        document.getElementById("gamearea").appendChild(textareadiv);
+        //The rememberarea
+        var rememberareadiv = document.createElement("div");
+        rememberareadiv.id = "rememberarea";
+        rememberareadiv.style.display = "none";
+        document.getElementById("gamearea").appendChild(rememberareadiv);
+
+        // The guessarea
+        var guessareadiv = document.createElement("div");
+        guessareadiv.id = "guessarea";
+        guessareadiv.style.display = "none";
+        document.getElementById("gamearea").appendChild(guessareadiv);
+
 
         // Button to start the timer
         var timerButton = document.createElement("BUTTON");
@@ -89,7 +96,7 @@
 
 
         // Color who shows up loop for the dots.
-        document.getElementById("textarea1").innerHTML =
+        document.getElementById("rememberarea").innerHTML =
             "THIS IS THE COLORORDER YOU NEED TO REMEMBER 👇";
 
         var correctbuttondiv = document.createElement("div");
@@ -98,12 +105,12 @@
         correctbuttondiv.style.display = "none";
 
         // Button to correct
-        var corecctButton = document.createElement("BUTTON"); 
-        corecctButton.innerHTML = "CORRECT"; 
+        var corecctButton = document.createElement("BUTTON");
+        corecctButton.innerHTML = "CORRECT";
         //corecctButton.style.display = "none";
         document.body.appendChild(correctbuttondiv);
-        correctbuttondiv.appendChild(corecctButton); 
-      
+        correctbuttondiv.appendChild(corecctButton);
+
         /*
         // Button to reset
         var resetButton = document.createElement("BUTTON");
@@ -113,15 +120,14 @@
         document.getElementById("gamearea").appendChild(resetButton); //FIX
         */
 
-        /*The text after the memory game
-        textareadiv = document.createElement("div");
-        textareadiv.id = "textarea2";
-        document.getElementById("gamearea").appendChild(textareadiv);
-        */
 
         // Here will the colororder the random colors to shows up
         const canvas = document.createElement("canvas");
-        document.getElementById("textarea1").appendChild(canvas);
+        document.getElementById("rememberarea").appendChild(canvas);
+
+        // Here will the guessing canva shows up
+        const guessingcanvas = document.createElement("canvas");
+
 
 
 
@@ -139,14 +145,15 @@
             return arrayOfRandomizedColors;
         }
 
-        function drawNthCircleInColor(n, color) {
+        function drawNthCircleInColor(n, fillcolor, edgecolor) {
             ctx.beginPath();
+            // Place for the canva
             ctx.arc(50 * (n + 1) - 25, 25, 20, 0, 2 * Math.PI);
             // To get a random color
-            ctx.fillStyle = color;
+            ctx.fillStyle = fillcolor;
             ctx.fill();
             ctx.lineWidth = 1;
-            ctx.strokeStyle = color;
+            ctx.strokeStyle = edgecolor;
             ctx.stroke();
         }
 
@@ -159,12 +166,12 @@
         const ctx = canvas.getContext("2d");
 
         // Hide the text THIS IS THE COLORORDER... before the timer sets
-        textarea1.style.display = "none";
+        rememberarea.style.display = "none";
 
         /*
-        textareadiv = document.createElement("div");
-        textareadiv.id = "timer";
-        document.getElementById("gamearea").appendChild(textareadiv);
+        rememberareadiv = document.createElement("div");
+        rememberareadiv.id = "timer";
+        document.getElementById("gamearea").appendChild(rememberareadiv);
         */
 
 
@@ -173,7 +180,7 @@
             var arrayOfCorrectColors = createArrayOfRandomizedColors(numberOfBlobs);
 
             for (let index = 0; index < numberOfBlobs; index++) {
-                drawNthCircleInColor(index, arrayOfCorrectColors[index]);
+                drawNthCircleInColor(index, arrayOfCorrectColors[index], "black");
             }
         }
 
@@ -207,7 +214,7 @@
         function startTimer() {
             canvas.style.display = "block";  // The color to rememberpops up
             colorBoardText.style.display = "block"; // The user colorboard shows up
-            textareadiv.style.display = "block"; // The colorordertext shows
+            rememberareadiv.style.display = "block"; // The colorordertext shows
 
             var timeLeft = numberOfBlobs
             timerDisplay.innerHTML = "Time left: " + timeLeft + " seconds";
@@ -219,14 +226,14 @@
 
                 if (timeLeft <= 0) {
                     clearInterval(timer);
-                    document.getElementById("textarea1").innerHTML += ("PRESS THE ORDER YOU JUST SEEN:");
+                    document.getElementById("rememberarea").innerHTML += ("PRESS THE ORDER YOU JUST SEEN:");
                     var canvas = document.getElementById("myCanvas");
-                        //Hide the canvas
-                        canvas.style.display = "none";
-                    
+                    //Hide the canvas
+                    canvas.style.display = "none";
 
 
-                    textarea1.style.display = "none"; //Hide the text COLORORDER
+
+                    rememberarea.style.display = "none"; //Hide the text COLORORDER
 
                     //Hide the timebutton when the countdown is done
 
