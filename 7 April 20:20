@@ -49,10 +49,9 @@
 
         //When you have press the button RULES you come to a new site there you can see the rules
         rulesdiv.innerHTML = "Hi " + intro + "! It is time to review the rules! " + "<br>" + "<br>" + "RULES:" + "<br> "
-            + "1. You have 15 secound each round to memorize the color." + "<br>" +
-            " 2. After every 5 round the possison of colors you choose between mixed and you can not change this." + "<br> " +
-            "3. After every 6th round you have the opportunity to add a color to choose from, it is up to you if you want that." + "<br> " +
-            "4. If you tap in the wrong order you lose!" + "<br>"
+            + "1.You have 5 secound each round to memorize the color." + "<br>" +
+            " 2. You choose between some colors you need to press." + "<br> " +
+            "3. If you tap in the wrong order you lose!" + "<br>"
             + "Good luck " + intro + "!" + "<br> " + "<br> " + "Press \"SHOW\" down below to view the gamingboard and \"HIDE\" if you want to hide the game!"
             + "<br>" + "This will not start / stop the game!"
             + "<br>" + "<br>";
@@ -106,7 +105,7 @@
         var correctButtondiv = document.createElement("div");
         correctButtondiv.id = "correctbuttondiv";
         correctButtondiv.style.display = "none";
-        
+
         var corecctButton = document.createElement("BUTTON");
         corecctButton.innerHTML = "CORRECT";
         document.body.appendChild(correctButtondiv);
@@ -151,8 +150,8 @@
             // Put out the color on the board
             return arrayOfRandomizedColors;
         }
-         // Color for the remembercircle
-        function drawWithCircleIColor(n, fillcolor, edgecolor) {
+        // Color for the remembercircle
+        function drawWithCircleIColor(ctx, n, fillcolor, edgecolor) {
             ctx.beginPath();
             // Place for the canva
             ctx.arc(50 * (n + 1) - 25, 25, 20, 0, 2 * Math.PI);
@@ -164,10 +163,10 @@
             ctx.stroke();
         }
 
-        
+
 
         // Color for the guessingcircle
-        function drawWithGuessingCircle(n, transparent, guessctx, edgecolor) { 
+        function drawWithGuessingCircle(n, transparent, guessctx, edgecolor) {
             guessctx.beginPath();
             // Place for the canva
             guessctx.arc(50 * (n + 1) - 25, 75, 20, 0, 2 * Math.PI);
@@ -180,6 +179,8 @@
         }
 
 
+
+
         // To get a canvas for the guessorder on the board
         guessingcanvas.id = "guessingcanvas";
         guessingcanvas.height = 50;
@@ -190,39 +191,44 @@
         const ctx = remembercanvas.getContext("2d");
         const guessctx = guessingcanvas.getContext("2d");
 
+
+
         // Hide the text THIS IS THE COLORORDER... before the timer sets
         rememberarea.style.display = "none";
-        
+
         // Hide this until the timer runs out
         guessarea.style.display = "none";
 
 
         // To get the colorreemberblobs
-        for (var numberOfBlobs = 1; numberOfBlobs < 5; numberOfBlobs++) {
-            guessingcanvas.width = 50 * numberOfBlobs;
-            remembercanvas.width = 50 * numberOfBlobs;
-            remembercanvas.height = 50;
+        var numberOfBlobs = 5
+        guessingcanvas.width = 50 * numberOfBlobs;
+        remembercanvas.width = 50 * numberOfBlobs;
+        remembercanvas.height = 50;
+        for (var index = 0; index < numberOfBlobs; index++) {
             var arrayOfCorrectColors = createArrayOfRandomizedColors(numberOfBlobs);
-
-            for (let index = 0; index < numberOfBlobs; index++) {
-                drawWithCircleIColor(index, arrayOfCorrectColors[index], "black");
-            }
-
+            drawWithCircleIColor(ctx, index, arrayOfCorrectColors[index], "black");
         }
-         
 
 
-        // Text under your memorygame 
+
+        // Text under your memorygame
         var colorboardinstruction = document.createElement("div");
         colorboardinstruction.id = "colorboardinstruction";
         document.getElementById("gamearea").appendChild(colorboardinstruction);
         colorboardinstruction.style.display = "none";
 
+        
+        // Make the guessingcanva
+        var arrayOfguessedcolors = ["white", "white", "white", "white", "white"];
+        guessingcanvas.width = 50 * numberOfBlobs;
+        guessingcanvas.height = 50;
+        for (var index = 0; index < numberOfBlobs; index++) {
+            drawWithCircleIColor(guessctx, index, arrayOfguessedcolors[index], "black");
 
 
-
-
-
+        }
+        guessingcanvas.style.display = "none";
 
         // Timer display
         var timerDisplay = document.createElement("div");
@@ -261,8 +267,8 @@
                     correctbuttondiv.style.display = "block";
                     //resetbutton.style.display = "block";
 
-                    
-                    correctbuttondiv.style.display = "block";
+
+                    //correctbuttondiv.style.display = "block";
                     //Hide time left
                     timerDisplay.style.display = "none";
 
@@ -275,22 +281,19 @@
                     // Show the gussarea when the timer runs out
                     guessareadiv.style.display = "block";
 
-                    colorGuessingButtonDiv.style.display = "block";
+                    //colorGuessingButtonDiv.style.display = "block";
 
-                    for (let i = 0; i < numberOfBlobs; i++) {
-                        drawWithGuessingCircle(i, arrayOfCorrectColors[i], guessctx, "black");
-                    }
                 }
             }, 1000);
         }
 
 
-    </script> 
+    </script>
 
 
     <div id="intro">
         This game is a memory game there you gonna see how good memory you have! <br />
-        For every round you win it gonna be harder and harder up to levle 14 who is the last levle! <br />
+        You gonna get 5 circles with a color you need to remember <br />
         If you press the wrong button you need to start all over again! <br /> <br /> Press (RULES) down below to see the rules. <br /> <br />
     </div>
 
