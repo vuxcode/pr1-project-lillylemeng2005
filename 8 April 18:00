@@ -126,6 +126,7 @@
         const remembercanvas = document.createElement("canvas");
         document.getElementById("rememberarea").appendChild(remembercanvas);
 
+
         // Here will the guessing canva shows up
         const guessingcanvas = document.createElement("canvas");
         document.getElementById("guessarea").appendChild(guessingcanvas)
@@ -178,7 +179,7 @@
         guessingcanvas.height = 50;
         guessingcanvas.style = "border:1px solid #000000;"
         // At the board
-        document.getElementById("gamearea").appendChild(guessingcanvas);
+        document.getElementById("guessarea").appendChild(guessingcanvas);
         guessingcanvas.style.display = "none";
         const ctx = remembercanvas.getContext("2d");
         const guessctx = guessingcanvas.getContext("2d");
@@ -193,6 +194,8 @@
         // To get the colorreemberblobs
         for (var numberOfBlobs = 1; numberOfBlobs < 5; numberOfBlobs++) {
             guessingcanvas.width = 50 * numberOfBlobs;
+            remembercanvas.width = 50 * numberOfBlobs;
+            remembercanvas.height = 50;
             var arrayOfCorrectColors = createArrayOfRandomizedColors(numberOfBlobs);
 
             for (let index = 0; index < numberOfBlobs; index++) {
@@ -204,7 +207,6 @@
         // Text under your memorygame 
         var colorboardinstruction = document.createElement("div");
         colorboardinstruction.id = "colorboardinstruction";
-        colorboardinstruction.innerHTML = "👇Press the order you just seen👇";
         document.getElementById("gamearea").appendChild(colorboardinstruction);
         colorboardinstruction.style.display = "none";
 
@@ -257,12 +259,9 @@
 
                 if (timeLeft <= 0) {
                     clearInterval(timer);
-                    document.getElementById("rememberarea").innerHTML += ("PRESS THE ORDER YOU JUST SEEN:");
-                    //var canvas = document.getElementById("myCanvas");
-                    //Hide the canvas
-                    //canvas.style.display = "none";
+                    document.getElementById("rememberarea").innerHTML = "PRESS THE ORDER YOU JUST SEEN:";
 
-                    rememberarea.style.display = "none"; //Hide the text COLORORDER
+                    //rememberarea.style.display = "none"; //Hide the text COLORORDER
 
                     //Hide the timebutton when the countdown is done
                     timerButton.style.display = "none";
@@ -274,10 +273,11 @@
                     //Hide time left
                     timerDisplay.style.display = "none";
 
+                    // Add a canva for the user to guess on
+                    guessingcanvas.style.display = "block";
+
                     // Show the instruction when the timer runs out
                     colorboardinstruction.style.display = "block";
-
-                    guessingcanvas.style.display = "block";
 
                     // Show the gussarea when the timer runs out
                     guessareadiv.style.display = "block";
@@ -292,7 +292,7 @@
         }
 
 
-    </script>
+    </script> 
 
 
     <div id="intro">
