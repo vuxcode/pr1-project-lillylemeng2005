@@ -101,6 +101,9 @@
         document.getElementById("rememberarea").innerHTML =
             "THIS IS THE COLORORDER YOU NEED TO REMEMBER 👇";
 
+        // Get buttons for the guessing
+
+
         // Button to correct
         var correctbuttondiv = document.createElement("div");
         correctbuttondiv.id = "correctbuttondiv";
@@ -111,6 +114,8 @@
         corecctButton.style.display = "none";
         document.body.appendChild(correctbuttondiv);
         correctbuttondiv.appendChild(corecctButton);
+
+
 
         /*
         // Button to reset
@@ -246,7 +251,7 @@
             rememberareadiv.style.display = "block"; // The colorordertext shows
             colorboardinstruction.style.display = "none" // The colorboardinstruction dosnt bee there
             guessareadiv.style.display = "none"; //  The guessblobs is hidden
-            corecctButton.style.display = "none";
+            corecctButton.style.display = "none"; 
 
 
             var timeLeft = numberOfBlobs
@@ -283,6 +288,7 @@
                     guessareadiv.style.display = "block";
 
                     corecctButton.style.display = "block";
+
 
                     for (let i = 0; i < numberOfBlobs; i++) {
                         drawWithGuessingCircle(i, guessctx);
