@@ -7,7 +7,7 @@
     <script>
         // Intro and when I have press (OK) the program will start running
         var intro = prompt("Hello and welcome to this game! Type in your name and then press " + "(OK)" + " to get the instruction.");
-        var colors = ["red", "blue", "yellow", "green", "pink", "orange", "purple", "grey", "turquoise", "brown", "lime", "beige", "deeppink", "skyblue", "olive"];
+        var colors = ["red", "blue", "yellow", "green", "pink", "orange", "purple", "grey", "turquoise", "lime"];
 
         //Function to show a texts in functional buttons
         function myFunction() {
@@ -49,10 +49,9 @@
 
         //When you have press the button RULES you come to a new site there you can see the rules
         rulesdiv.innerHTML = "Hi " + intro + "! It is time to review the rules! " + "<br>" + "<br>" + "RULES:" + "<br> "
-            + "1. You have 15 secound each round to memorize the color." + "<br>" +
-            " 2. After every 5 round the possison of colors you choose between mixed and you can not change this." + "<br> " +
-            "3. After every 6th round you have the opportunity to add a color to choose from, it is up to you if you want that." + "<br> " +
-            "4. If you tap in the wrong order you lose!" + "<br>"
+            + "1.You have 5 secound each round to memorize the color." + "<br>" +
+            " 2. You choose between some colors you need to press." + "<br> " +
+            "3. If you tap in the wrong order you lose!" + "<br>"
             + "Good luck " + intro + "!" + "<br> " + "<br> " + "Press \"SHOW\" down below to view the gamingboard and \"HIDE\" if you want to hide the game!"
             + "<br>" + "This will not start / stop the game!"
             + "<br>" + "<br>";
@@ -98,32 +97,27 @@
         timerButton.style.display = "none";
 
 
-        // Color who shows up loop for the dots.
-        document.getElementById("rememberarea").innerHTML =
-            "THIS IS THE COLORORDER YOU NEED TO REMEMBER 👇" + "<br>";
+        
+        var remembertext = document.createElement("div");
+        remembertext.id = "remembertext";
+        remembertext.innerHTML = "THIS IS THE COLORORDER YOU NEED TO REMEMBER 👇" + "<br>";
+        document.getElementById("rememberarea").appendChild(remembertext);
 
-        // Button to correct FIX
-        var correctButtondiv = document.createElement("div");
-        correctButtondiv.id = "correctbuttondiv";
-        correctButtondiv.style.display = "none";
 
-        var corecctButton = document.createElement("BUTTON");
-        corecctButton.innerHTML = "CORRECT";
-        document.body.appendChild(correctButtondiv);
-        correctButtondiv.appendChild(corecctButton);
 
         // Here will the colororder to random colors to shows up
-        const remembercanvas = document.createElement("canvas");
+        var remembercanvas = document.createElement("canvas");
         document.getElementById("rememberarea").appendChild(remembercanvas);
+        remembercanvas.id = "remembercanvas";
 
         // Here will the guessing canva shows up
-        const guessingcanvas = document.createElement("canvas");
+        var guessingcanvas = document.createElement("canvas");
         document.getElementById("guessarea").appendChild(guessingcanvas)
 
         // Text under color blobs for "Your color board"
         var colorBoardText = document.createElement("div");
         colorBoardText.id = "colorBoardText";
-        colorBoardText.innerHTML = "👇 Your colorboard 👇";
+        colorBoardText.innerHTML = "👇 Your colorboard 👇" + "<br>";
         document.getElementById("gamearea").appendChild(colorBoardText);
         colorBoardText.style.display = "none";
 
@@ -144,7 +138,7 @@
             var arrayOfRandomizedColors = new Array();
             while (arrayOfRandomizedColors.length < count) {
                 // Math.floor to get a whole color
-                var color = Math.floor((Math.random() * 14) + 1);
+                var color = Math.floor((Math.random() * 10));
                 arrayOfRandomizedColors.push(colors[color]);
 
             }
@@ -167,18 +161,17 @@
 
 
         // Color for the guessingcircle
-        function drawWithGuessingCircle(n, transparent, guessctx, edgecolor) {
-            guessctx.beginPath();
-            // Place for the canva
-            guessctx.arc(50 * (n + 1) - 25, 75, 20, 0, 2 * Math.PI);
-            guessctx.fillStyle = transparent;
-            guessctx.fill();
-            // To get linecolor
-            guessctx.lineWidth = 1;
-            guessctx.strokeStyle = edgecolor;
-            guessctx.stroke()
-        }
-
+        //function drawWithGuessingCircle(n, transparent, guessctx, edgecolor) {
+        //    guessctx.beginPath();
+        //    // Place for the canva
+        //    guessctx.arc(50 * (n + 1) - 25, 75, 20, 0, 2 * Math.PI);
+        //    guessctx.fillStyle = transparent;
+        //    guessctx.fill();
+        //    // To get linecolor
+        //    guessctx.lineWidth = 1;
+        //    guessctx.strokeStyle = edgecolor;
+        //    guessctx.stroke()
+        //}
 
         // To get a canvas for the guessorder on the board
         guessingcanvas.id = "guessingcanvas";
@@ -187,8 +180,8 @@
         // At the board
         document.getElementById("guessarea").appendChild(guessingcanvas);
         guessingcanvas.style.display = "none";
-        const ctx = remembercanvas.getContext("2d");
-        const guessctx = guessingcanvas.getContext("2d");
+        var ctx = remembercanvas.getContext("2d");
+        var guessctx = guessingcanvas.getContext("2d");
 
 
 
@@ -200,17 +193,16 @@
 
 
         // To get the colorreemberblobs
-        for (var numberOfBlobs = 1; numberOfBlobs < 5; numberOfBlobs++) {
-            guessingcanvas.width = 50 * numberOfBlobs;
-            remembercanvas.width = 50 * numberOfBlobs;
-            remembercanvas.height = 50;
-            var arrayOfCorrectColors = createArrayOfRandomizedColors(numberOfBlobs);
+        var numberOfBlobs = 5
+        guessingcanvas.width = 50 * numberOfBlobs;
+        remembercanvas.width = 50 * numberOfBlobs;
+        remembercanvas.height = 50;
 
-            for (let index = 0; index < numberOfBlobs; index++) {
-                drawWithCircleIColor(ctx, index, arrayOfCorrectColors[index], "black");
-            }
-
+        var arrayOfCorrectColors = createArrayOfRandomizedColors(numberOfBlobs);
+        for (var index = 0; index < numberOfBlobs; index++) {
+            drawWithCircleIColor(ctx, index, arrayOfCorrectColors[index], "black");
         }
+
 
 
 
@@ -220,19 +212,57 @@
         document.getElementById("gamearea").appendChild(colorboardinstruction);
         colorboardinstruction.style.display = "none";
 
-        
-        // Make the guessingcanva
-        for (var numberOfBlobs = 1; numberOfBlobs < 5; numberOfBlobs++) {
-            guessingcanvas.width = 50 * numberOfBlobs;
-            guessingcanvas.height = 50;
-            
 
-            for (let index = 0; index < numberOfBlobs; index++) {
-                drawWithCircleIColor(guessctx,index, "white", "black");
-            }
+        // Make the guessingcanva
+        var arrayOfguessedcolors = ["white", "white", "white", "white", "white"];
+        guessingcanvas.width = 50 * numberOfBlobs;
+        guessingcanvas.height = 50;
+        for (var index = 0; index < numberOfBlobs; index++) {
+            drawWithCircleIColor(guessctx, index, arrayOfguessedcolors[index], "black");
+
 
         }
         guessingcanvas.style.display = "none";
+
+        // Add guessed color to list of guesses
+        function addcolor(colorname) {
+            arrayOfguessedcolors[arrayOfguessedcolors.indexOf("white")] = colorname;
+            for (var index = 0; index < numberOfBlobs; index++) {
+                drawWithCircleIColor(guessctx, index, arrayOfguessedcolors[index], "black");
+            }
+            countdown--;
+            if (countdown == 0) {
+                for (var i = 0; i < numberOfBlobs; i++) {
+
+                    if (arrayOfguessedcolors[i] != arrayOfCorrectColors[i]) {
+                        gameareadiv.innerHTML += "You have wrong, This was the right order☝️";
+                        var showright = document.getElementById("remembercanvas");
+                        showright.style.display = "block";
+                        rememberareadiv.style.display = "block";
+                        var showrightctx = showright.getContext("2d");
+
+                        for (var index = 0; index < numberOfBlobs; index++) {
+                            drawWithCircleIColor(showrightctx, index, arrayOfCorrectColors[index], "black");
+                        }
+                        document.getElementById("colorBoardText").style.display = "none";
+                        guessarea.style.display = "none";
+                        guessingcanvas.style.display = "none";
+
+                        document.getElementById("pressorder").style.display = "none";
+                        document.getElementById("remembertext").style.display = "none";
+                        break;
+                    }
+                    else {
+                        gameareadiv.innerHTML = "Congratulations! You have a good memory!";
+                    }
+                }
+
+            }
+
+        }
+        var countdown = 5;
+
+
 
         // Timer display
         var timerDisplay = document.createElement("div");
@@ -260,19 +290,17 @@
 
                 if (timeLeft <= 0) {
                     clearInterval(timer);
-                    document.getElementById("rememberarea").innerHTML = "PRESS THE ORDER YOU JUST SEEN:";
+                    var pressorder = document.createElement("div");
+                    pressorder.id = "pressorder";
+                    pressorder.innerHTML = "PRESS THE ORDER YOU JUST SEEN:";
+                    document.getElementById("rememberarea").appendChild(pressorder);
 
+                    remembercanvas.style.display = "none";
                     //rememberarea.style.display = "none"; //Hide the text COLORORDER
 
                     //Hide the timebutton when the countdown is done
                     timerButton.style.display = "none";
 
-                    // Correct button shows up when the timer hit 0
-                    correctbuttondiv.style.display = "block";
-                    //resetbutton.style.display = "block";
-
-
-                    //correctbuttondiv.style.display = "block";
                     //Hide time left
                     timerDisplay.style.display = "none";
 
@@ -285,19 +313,48 @@
                     // Show the gussarea when the timer runs out
                     guessareadiv.style.display = "block";
 
-                    //colorGuessingButtonDiv.style.display = "block";
+                    document.getElementById("remembertext").style.display = "none";
+
+                    function addcolors(newcolor) {
+                        var drawWithGuessingCircle = document.getElementById("change");
+
+                        document.getElementById("change").style.color = "colors";
+                        document.getElementById("rememberarea").innerHTML = addcolor
+                        addcolor.style.color = addcolor;
+                        addcolor.innerHTML = addcolor
+
+
+                    }
+                    //function drawcircles(colors) {
+                    //    ctx.clearRect(0, 0, canvas.width, canvas.height); //
+                    //    ctx.beginPath();
+                    //    ctx.arc(150, 100, 50, 0, 2 * Math.PI);
+                    //    ctx.fillStyle = colors;
+                    //    ctx.fill();
+                    //    ctx.stroke();
+                    //}
+
+
+
+                    // Connect the colorbuttons
+                    for (let i = 0; i < colors.length; i++) {
+                        let colorbutton = document.getElementById("colorbuttondiv" + i);
+                        colorbutton.addEventListener("click", function () {
+                            addcolor(colors[i]);
+                        });
+                    }
+
 
                 }
             }, 1000);
         }
-
 
     </script>
 
 
     <div id="intro">
         This game is a memory game there you gonna see how good memory you have! <br />
-        For every round you win it gonna be harder and harder up to levle 14 who is the last levle! <br />
+        You gonna get 5 circles with a color you need to remember <br />
         If you press the wrong button you need to start all over again! <br /> <br /> Press (RULES) down below to see the rules. <br /> <br />
     </div>
 
