@@ -48,3 +48,7 @@ remove some colors and took diffrent color so you know the name of the color, 16
 
 17 April
 Fix the last of the code
+
+28 April
+PROBLEM
+Fix the presentation to the game when I found a problem, the correcting is wrong, if you press the first color right it will say both texts "Congratulations! You have a good memory!You have wrong, This was the right order☝️" 
