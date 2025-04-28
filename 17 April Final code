@@ -97,7 +97,7 @@
         timerButton.style.display = "none";
 
 
-        
+
         var remembertext = document.createElement("div");
         remembertext.id = "remembertext";
         remembertext.innerHTML = "THIS IS THE COLORORDER YOU NEED TO REMEMBER 👇" + "<br>";
@@ -235,7 +235,7 @@
                 for (var i = 0; i < numberOfBlobs; i++) {
 
                     if (arrayOfguessedcolors[i] != arrayOfCorrectColors[i]) {
-                        gameareadiv.innerHTML += "You have wrong, This was the right order☝️";
+                        gameareadiv.innerHTML = "You have wrong, This was the right order☝️";
                         var showright = document.getElementById("remembercanvas");
                         showright.style.display = "block";
                         rememberareadiv.style.display = "block";
