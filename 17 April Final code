@@ -9,12 +9,55 @@
         var intro = prompt("Hello and welcome to this game! Type in your name and then press " + "(OK)" + " to get the instruction.");
         var colors = ["red", "blue", "yellow", "green", "pink", "orange", "purple", "grey", "turquoise", "lime"];
 
+        // To get the rules
+        var rulesdiv = document.createElement("div");
+        rulesdiv.id = "rulesarea";
+        rulesdiv.style.display = "none";
+        document.body.appendChild(rulesdiv);
+
+        //When you have press the button RULES you come to a new site there you can see the rules
+        rulesdiv.innerHTML = "Hi " + intro + "! It is time to review the rules! " + "<br>" + "<br>" + "RULES:" + "<br> "
+            + "1.You have 5 secound each round to memorize the color." + "<br>" +
+            " 2. You choose between some colors you need to press." + "<br> " +
+            "3. If you tap in the wrong order you lose!" + "<br>"
+            + "Good luck " + intro + "!" + "<br> " + "<br> " + "Press \"SHOW\" down below to view the gamingboard and \"HIDE\" if you want to hide the game!"
+            + "<br>" + "This will not start / stop the game!"
+            + "<br>" + "<br>";
+
+        // Buttons to the screen
+        var showbutton = document.createElement("BUTTON");
+        var showbuttontext = document.createTextNode("SHOW");
+        var hidebutton = document.createElement("BUTTON");
+        var hidebuttontext = document.createTextNode("HIDE");
+
+        // You see texts on the buttons
+        showbutton.appendChild(showbuttontext);
+        hidebutton.appendChild(hidebuttontext);
+        showbutton.addEventListener("click", functionshow);
+        hidebutton.addEventListener("click", functionhide);
+
+        //You see the show and hide buttons on the ruleside
+        rulesdiv.appendChild(showbutton);
+        rulesdiv.appendChild(hidebutton);
+
         //Function to show a texts in functional buttons
         function myFunction() {
             rulesdiv.style.display = "block";
             document.getElementById("intro").style.display = "none";
             document.getElementById("rulesbutton").style.display = "none";
         }
+
+        // Make gameareadiv
+        var gameareadiv = document.createElement('div');
+        gameareadiv.id = "gamearea";
+        gameareadiv.style.display = "none";
+
+        // Write gamecode
+        document.body.appendChild(gameareadiv);
+
+        //Game layut
+        var gameareadivtext = document.createTextNode("- THE MEMORY-GAME - ");
+        gameareadiv.appendChild(gameareadivtext);
 
         //To get the text downbelow show and hide buttons
         function functionshow() {
@@ -28,52 +71,7 @@
                 document.getElementById("gamearea").style.display = "none";
                 document.getElementById("timerbutton").style.display = "none";
             }
-
         }
-        // To get the rules
-        var rulesdiv = document.createElement("div");
-        rulesdiv.id = "rulesarea";
-        rulesdiv.style.display = "none";
-        document.body.appendChild(rulesdiv);
-
-        // Buttons to the screen
-        var showbutton = document.createElement("BUTTON");
-        var showbuttontext = document.createTextNode("SHOW");
-        var hidebutton = document.createElement("BUTTON");
-        var hidebuttontext = document.createTextNode("HIDE");
-
-        // You see texts on the buttons
-        showbutton.appendChild(showbuttontext);
-        hidebutton.appendChild(hidebuttontext);
-
-
-        //When you have press the button RULES you come to a new site there you can see the rules
-        rulesdiv.innerHTML = "Hi " + intro + "! It is time to review the rules! " + "<br>" + "<br>" + "RULES:" + "<br> "
-            + "1.You have 5 secound each round to memorize the color." + "<br>" +
-            " 2. You choose between some colors you need to press." + "<br> " +
-            "3. If you tap in the wrong order you lose!" + "<br>"
-            + "Good luck " + intro + "!" + "<br> " + "<br> " + "Press \"SHOW\" down below to view the gamingboard and \"HIDE\" if you want to hide the game!"
-            + "<br>" + "This will not start / stop the game!"
-            + "<br>" + "<br>";
-
-        //You see the show and hide buttons on the ruleside
-        rulesdiv.appendChild(showbutton);
-        rulesdiv.appendChild(hidebutton);
-        showbutton.addEventListener("click", functionshow);
-        hidebutton.addEventListener("click", functionhide);
-
-        // Make gameareadiv
-        var gameareadiv = document.createElement('div');
-        gameareadiv.id = "gamearea";
-        gameareadiv.style.display = "none";
-        var spacedivivtext = document.createTextNode("");
-
-        // Write gamecode
-        document.body.appendChild(gameareadiv);
-
-        //Game layut
-        var gameareadivtext = document.createTextNode("- THE MEMORY-GAME - ");
-        gameareadiv.appendChild(gameareadivtext);
 
         //The rememberarea
         var rememberareadiv = document.createElement("div");
@@ -81,38 +79,62 @@
         rememberareadiv.style.display = "none";
         document.getElementById("gamearea").appendChild(rememberareadiv);
 
+        var remembertext = document.createElement("div");
+        remembertext.id = "remembertext";
+        remembertext.innerHTML = "THIS IS THE COLORORDER YOU NEED TO REMEMBER 👇" + "<br>";
+        document.getElementById("rememberarea").appendChild(remembertext);
+
+        // To get the colorreemberblobs
+        var numberOfBlobs = 5
+        
+
+        // Here will the colororder to random colors to shows up
+        var remembercanvas = document.createElement("canvas");
+        document.getElementById("rememberarea").appendChild(remembercanvas);
+        remembercanvas.id = "remembercanvas";
+        remembercanvas.height = 50;
+        remembercanvas.width = 50 * numberOfBlobs;
+        var ctx = remembercanvas.getContext("2d");
+
+        // Canva with colororder to remember
+        function createArrayOfRandomizedColors(count) {
+            // Make a array with different colors
+            var arrayOfRandomizedColors = new Array();
+            while (arrayOfRandomizedColors.length < count) {
+                // Math.floor to get a whole color
+                var color = Math.floor((Math.random() * 10));
+                arrayOfRandomizedColors.push(colors[color]);
+
+            }
+            // Put out the color on the board
+            return arrayOfRandomizedColors;
+        }
+
         // The guessarea
         var guessareadiv = document.createElement("div");
         guessareadiv.id = "guessarea";
         guessareadiv.style.display = "none";
         document.getElementById("gamearea").appendChild(guessareadiv);
 
+        // Here will the guessing canva shows up
+        var guessingcanvas = document.createElement("canvas");
+        document.getElementById("guessarea").appendChild(guessingcanvas);
+        // To get a canvas for the guessorder on the board
+        guessingcanvas.id = "guessingcanvas";
+        guessingcanvas.height = 50;
+        guessingcanvas.width = 50 * numberOfBlobs;
+        guessingcanvas.style = "border:1px solid #000000;"
+        // At the board
+        document.getElementById("guessarea").appendChild(guessingcanvas);
+        var guessctx = guessingcanvas.getContext("2d");
 
-        // Button to start the timer
+        // Create button to start the timer
         var timerButton = document.createElement("BUTTON");
         timerButton.id = "timerbutton";
         timerButton.innerHTML = "START TIMER";
         timerButton.onclick = startTimer;
-        document.body.appendChild(timerButton); // To start the timer
+        document.body.appendChild(timerButton); // Add button to document
         timerButton.style.display = "none";
-
-
-
-        var remembertext = document.createElement("div");
-        remembertext.id = "remembertext";
-        remembertext.innerHTML = "THIS IS THE COLORORDER YOU NEED TO REMEMBER 👇" + "<br>";
-        document.getElementById("rememberarea").appendChild(remembertext);
-
-
-
-        // Here will the colororder to random colors to shows up
-        var remembercanvas = document.createElement("canvas");
-        document.getElementById("rememberarea").appendChild(remembercanvas);
-        remembercanvas.id = "remembercanvas";
-
-        // Here will the guessing canva shows up
-        var guessingcanvas = document.createElement("canvas");
-        document.getElementById("guessarea").appendChild(guessingcanvas)
 
         // Text under color blobs for "Your color board"
         var colorBoardText = document.createElement("div");
@@ -131,20 +153,27 @@
         }
 
 
+        
+        /* Early idea, not used
+        // Color for the guessingcircle
+        function drawWithGuessingCircle(n, transparent, guessctx, edgecolor) {
+            guessctx.beginPath();
+            // Place for the canva
+            guessctx.arc(50 * (n + 1) - 25, 75, 20, 0, 2 * Math.PI);
+            guessctx.fillStyle = transparent;
+            guessctx.fill();
+            // To get linecolor
+            guessctx.lineWidth = 1;
+            guessctx.strokeStyle = edgecolor;
+            guessctx.stroke()
+        }*/ // To have something who we don´t need in the code
 
-        // Canva with colororder to remember
-        function createArrayOfRandomizedColors(count) {
-            // Make a array with different colors
-            var arrayOfRandomizedColors = new Array();
-            while (arrayOfRandomizedColors.length < count) {
-                // Math.floor to get a whole color
-                var color = Math.floor((Math.random() * 10));
-                arrayOfRandomizedColors.push(colors[color]);
 
-            }
-            // Put out the color on the board
-            return arrayOfRandomizedColors;
-        }
+
+
+
+        var arrayOfCorrectColors = createArrayOfRandomizedColors(numberOfBlobs);
+
         // Color for the remembercircle
         function drawWithCircleIColor(ctx, n, fillcolor, edgecolor) {
             ctx.beginPath();
@@ -158,60 +187,15 @@
             ctx.stroke();
         }
 
-
-
-        // Color for the guessingcircle
-        //function drawWithGuessingCircle(n, transparent, guessctx, edgecolor) {
-        //    guessctx.beginPath();
-        //    // Place for the canva
-        //    guessctx.arc(50 * (n + 1) - 25, 75, 20, 0, 2 * Math.PI);
-        //    guessctx.fillStyle = transparent;
-        //    guessctx.fill();
-        //    // To get linecolor
-        //    guessctx.lineWidth = 1;
-        //    guessctx.strokeStyle = edgecolor;
-        //    guessctx.stroke()
-        //}
-
-        // To get a canvas for the guessorder on the board
-        guessingcanvas.id = "guessingcanvas";
-        guessingcanvas.height = 50;
-        guessingcanvas.style = "border:1px solid #000000;"
-        // At the board
-        document.getElementById("guessarea").appendChild(guessingcanvas);
-        guessingcanvas.style.display = "none";
-        var ctx = remembercanvas.getContext("2d");
-        var guessctx = guessingcanvas.getContext("2d");
-
-
-
-        // Hide the text THIS IS THE COLORORDER... before the timer sets
-        rememberarea.style.display = "none";
-
-        // Hide this until the timer runs out
-        guessarea.style.display = "none";
-
-
-        // To get the colorreemberblobs
-        var numberOfBlobs = 5
-        guessingcanvas.width = 50 * numberOfBlobs;
-        remembercanvas.width = 50 * numberOfBlobs;
-        remembercanvas.height = 50;
-
-        var arrayOfCorrectColors = createArrayOfRandomizedColors(numberOfBlobs);
         for (var index = 0; index < numberOfBlobs; index++) {
             drawWithCircleIColor(ctx, index, arrayOfCorrectColors[index], "black");
         }
-
-
-
 
         // Text under your memorygame
         var colorboardinstruction = document.createElement("div");
         colorboardinstruction.id = "colorboardinstruction";
         document.getElementById("gamearea").appendChild(colorboardinstruction);
         colorboardinstruction.style.display = "none";
-
 
         // Make the guessingcanva
         var arrayOfguessedcolors = ["white", "white", "white", "white", "white"];
@@ -232,37 +216,39 @@
             }
             countdown--;
             if (countdown == 0) {
-                for (var i = 0; i < numberOfBlobs; i++) {
-
-                    if (arrayOfguessedcolors[i] != arrayOfCorrectColors[i]) {
-                        gameareadiv.innerHTML = "You have wrong, This was the right order☝️";
-                        var showright = document.getElementById("remembercanvas");
-                        showright.style.display = "block";
-                        rememberareadiv.style.display = "block";
-                        var showrightctx = showright.getContext("2d");
-
-                        for (var index = 0; index < numberOfBlobs; index++) {
-                            drawWithCircleIColor(showrightctx, index, arrayOfCorrectColors[index], "black");
-                        }
-                        document.getElementById("colorBoardText").style.display = "none";
-                        guessarea.style.display = "none";
-                        guessingcanvas.style.display = "none";
-
-                        document.getElementById("pressorder").style.display = "none";
-                        document.getElementById("remembertext").style.display = "none";
+                // Check if all guesses are correct
+                var allcorrect = true;
+                for (var index = 0; index < numberOfBlobs; index++) {
+                    if (arrayOfguessedcolors[index] !== arrayOfCorrectColors[index]) {
+                        allcorrect = false;
                         break;
-                    }
-                    else {
-                        gameareadiv.innerHTML = "Congratulations! You have a good memory!";
                     }
                 }
 
-            }
+                // Display result based on whether the guesses are correct
+                if (allcorrect) {
+                    gameareadiv.appendChild(document.createTextNode("Congratulations! You have a good memory!"));
+                    colorBoardText.style.display = "none";
+                    rememberareadiv.style.display = "block";
+                    pressorder.style.display = "none";
+                } else {
+                    rememberareadiv.appendChild(document.createTextNode("You had wrong, This was the right order☝️"));
+                    var showright = document.getElementById("remembercanvas");
+                    showright.style.display = "block";
+                    rememberareadiv.style.display = "block";
+                    guessingcanvas.style.display = "none";
+                    var showrightctx = showright.getContext("2d");
+                    pressorder.style.display = "none";
+                    colorButtondiv.style.display = "none"
+                    colorBoardText.style.display = "none";
 
+                }
+
+            }
         }
         var countdown = 5;
 
-
+        
 
         // Timer display
         var timerDisplay = document.createElement("div");
@@ -277,16 +263,37 @@
             colorboardinstruction.style.display = "none" // The colorboardinstruction dosnt bee there
             guessareadiv.style.display = "none"; //  The guessblobs is hidden
             //guessingButtondiv.style.display = "none";
-
-
+ 
 
             var timeLeft = numberOfBlobs
             timerDisplay.innerHTML = "Time left: " + timeLeft + " seconds";
+            timerButton.style.display = "none";
+
+
+            // Connect the colorbuttons
+            for (let i = 0; i < colors.length; i++) {
+                let colorbutton = document.getElementById("colorbuttondiv" + i);
+                if (colorbutton) {
+                    colorbutton.style.color = colors[i]; // Textcolor
+
+                    // backgroundcolor
+                    colorbutton.style.backgroundColor = "black";
+
+                    // To conecct that the color shows up
+                    colorbutton.addEventListener("click", function () {
+                        addcolor(colors[i]);
+
+                    });
+                }
+
+            }
 
 
             var timer = setInterval(function () {
                 timeLeft--;
                 timerDisplay.innerHTML = "Time left: " + timeLeft + " seconds";
+
+
 
                 if (timeLeft <= 0) {
                     clearInterval(timer);
@@ -296,10 +303,6 @@
                     document.getElementById("rememberarea").appendChild(pressorder);
 
                     remembercanvas.style.display = "none";
-                    //rememberarea.style.display = "none"; //Hide the text COLORORDER
-
-                    //Hide the timebutton when the countdown is done
-                    timerButton.style.display = "none";
 
                     //Hide time left
                     timerDisplay.style.display = "none";
@@ -335,18 +338,11 @@
                     //}
 
 
-
-                    // Connect the colorbuttons
-                    for (let i = 0; i < colors.length; i++) {
-                        let colorbutton = document.getElementById("colorbuttondiv" + i);
-                        colorbutton.addEventListener("click", function () {
-                            addcolor(colors[i]);
-                        });
-                    }
-
-
+                    
+                    
                 }
             }, 1000);
+
         }
 
     </script>
