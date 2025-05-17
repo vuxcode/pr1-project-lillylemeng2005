@@ -12,9 +12,15 @@ The final program is not the goal! The aim of the project is to show how you hav
 > You can use this section of the file to keep notes about your project as you work on it.
 
 # Project Summary
-
-> Before the final submission date you should include a "PROJECT SUMMARY" in this section here. 
+A summary from the presentation I will have.
+- prompt give the user a oppertunity to do something
+- array a list the program will remember
+- Canvas draw in the program
+- if/ else do one thing or another
+- timer during a intervalve, the program make different things
+- forloop/ functions repeate code
+- div,id, appendchild,createelement. D: make a place in the document I:find the div in the code A:add something in a place C:diffrent element with diffrent functions like Buttons, canvas and more.
+- functions, style.display F: like a loop, insted of write many rows of codes over and over agan you make it one time. S: Make things show and hide at diffrent times
 
 # User Guide
-
-> Write a clear user guide for how someone should use your program.
+In this game you will start with give a input and get a discription how the game will work. You gonna get instruction in diffrent page. You will not be able to see the gamingboard before you press start on the screen. When you press start you gonna see a several of dots on the screen, this dots will you remember and when the time has run out you will try to guess the order you remember.
